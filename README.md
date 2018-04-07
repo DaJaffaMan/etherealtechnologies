@@ -2,7 +2,7 @@
 Gatsby starter based on the Dimension site template, designed by [HTML5 UP](https://html5up.net/dimension). Check out https://codebushi.com/gatsby-starters/ for more Gatsby starters and templates.
 
 ## Preview
-http://gatsby-dimension.surge.sh/
+http://etherealtechnologies.co.uk.s3-website.eu-central-1.amazonaws.com/
 
 ## Installation
 
