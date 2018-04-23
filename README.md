@@ -16,3 +16,4 @@ http://etherealtechnologies.co.uk.s3-website.eu-central-1.amazonaws.com/
 
 # Credit
 The base of this site was generated using Gatsby starter based on the Dimension site template, designed by [HTML5 UP](https://html5up.net/dimension). Check out https://codebushi.com/gatsby-starters/ for more Gatsby starters and templates.
+Logos, Favicon and Icons, all come from fontawesome. - https://fontawesome.com/icons?from=io
