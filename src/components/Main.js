@@ -32,7 +32,7 @@ class Main extends React.Component {
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Contact</h2>
-          <p>Feel free to contract us.</p>
+          <p>Feel free to contact us.</p>
           <ul className="icons">
           <li><a href="mailto:jack.h.jefferies+ethereal@gmail.com" className="icon fa-envelope"><span className="label">Email</span></a> Email </li>      
             {/* <li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li> */}
