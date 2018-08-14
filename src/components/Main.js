@@ -12,7 +12,7 @@ class Main extends React.Component {
         <article id="intro" className={`${this.props.article === 'intro' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Intro</h2>
           {/* <span className="image main"><img src={logo} alt="" /></span> */}
-          <p>Welcome to Ethereal Technologies, a software contracting outsourcing company aiming to deliver the best results for all our clients. To see more about some of the open source work we have contributed find more info on our <a href="https://github.com/jackjefferies">Github</a>.</p>
+          <p>Welcome to Ethereal Technologies, a software house aiming to deliver the best results for all our clients. To see more about some of the open source work we have contributed find more info on our <a href="https://github.com/jackjefferies">Github</a>.</p>
           {close}
         </article>
 
@@ -26,7 +26,7 @@ class Main extends React.Component {
         <article id="about" className={`${this.props.article === 'about' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">About</h2>
           {/* <span className="image main"><img src={logo} alt="" /></span> */}
-          <p>Ethereal Technologies was established in 2018, we work with our clients to reach goals that were once thought to be unachievable.</p>
+          <p>At Ethereal Technologies, we work with our clients to reach goals that were once thought to be unachievable.</p>
           {close}
         </article>
 
