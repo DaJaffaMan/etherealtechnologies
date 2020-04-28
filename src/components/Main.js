@@ -34,11 +34,11 @@ class Main extends React.Component {
           <h2 className="major">Contact</h2>
           <p>Feel free to contact us.</p>
           <ul className="icons">
-          <li><a href="mailto:jack.h.jefferies+ethereal@gmail.com" className="icon fa-envelope"><span className="label">Email</span></a> Email </li>      
+          <li><a href="mailto:jack.jefferies@etherealtechnologies.co.uk" className="icon fa-envelope"><span className="label">Email</span></a> Email </li>      
             {/* <li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li> */}
             <li><a href="https://www.facebook.com/Ethereal-Technologies-2059245424332198/" className="icon fa-facebook"><span className="label">Facebook</span></a> Facebook </li>
             {/* <li><a href="#" className="icon fa-instagram"><span className="label">Instagram</span></a></li> */}
-            <li><a href="https://github.com/jackjefferies" className="icon fa-github"><span className="label">GitHub</span></a> Github </li>
+            <li><a href="https://github.com/dajaffaman" className="icon fa-github"><span className="label">GitHub</span></a> Github </li>
           </ul>
           {close}
         </article>
