@@ -18,7 +18,7 @@
     "gatsby-transformer-sharp": "^1.6.22",
     "lodash": "^4.17.4"
   },
-  "homepage": "https://github.com/jackjefferies/etherealtechnologies",
+  "homepage": "https://github.com/DaJaffaMan/etherealtechnologies",
   "keywords": [
     "gatsby",
     "etherealtechnologies",
@@ -28,7 +28,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git@github.com:jackjefferies/etherealtechnologies.git"
+    "url": "git@github.com:DaJaffaMan/etherealtechnologies.git"
   },
   "scripts": {
     "dev": "gatsby develop",

@@ -12,7 +12,7 @@ class Main extends React.Component {
         <article id="intro" className={`${this.props.article === 'intro' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Intro</h2>
           {/* <span className="image main"><img src={logo} alt="" /></span> */}
-          <p>Welcome to Ethereal Technologies, a software house aiming to deliver the best results for all our clients. To see more about some of the open source work we have contributed find more info on our <a href="https://github.com/jackjefferies">Github</a>.</p>
+          <p>Welcome to Ethereal Technologies, a software house aiming to deliver the best results for all our clients. To see more about some of the open source work we have contributed find more info on our <a href="https://github.com/DaJaffaMan">Github</a>.</p>
           {close}
         </article>
 
