@@ -1,0 +1,18 @@
+/* Add this CSS to your stylesheet */
+.contact-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-icon {
+  text-align: center;
+}
+
+.rounded-icon {
+  border-radius: 50%;
+}
+
+.contact-text {
+  margin-top: 10px;
+}
