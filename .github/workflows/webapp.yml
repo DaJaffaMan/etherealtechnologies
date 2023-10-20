@@ -29,12 +29,12 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Deploy to AWS S3
-        uses: Reggionick/s3-deploy@v4.0.0
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          folder: build
-          bucket: ${{ secrets.AWS_S3_BUCKET }}
-          bucket-region: ${{ secrets.AWS_BUCKET_REGION }}
-          invalidation: /
-          delete-removed: true
-          files-to-include: "*"
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_BUCKET_REGION }}
+
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync ./public/ ./build/* s3://etherealtechnologies.co.uk --delete
