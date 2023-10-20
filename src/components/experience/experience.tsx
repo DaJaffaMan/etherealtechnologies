@@ -4,7 +4,6 @@ import Carousel from "react-bootstrap/Carousel";
 import { JobExperience } from "../../data/experiences";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./experience.css";
 
 interface ExperienceProps {
   experiences: JobExperience[];
