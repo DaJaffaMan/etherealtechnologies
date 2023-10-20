@@ -5,6 +5,14 @@
   align-items: center;
 }
 
+.contact-icons:is(:first-child) {
+  margin-left: 5rem;
+}
+
+.contact-icons:is(:last-child) {
+  margin-right: 5rem;
+}
+
 .contact-icon {
   text-align: center;
 }
