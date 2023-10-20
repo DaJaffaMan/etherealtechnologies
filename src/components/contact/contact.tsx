@@ -16,7 +16,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ show, onHide }) => {
   return (
     <Modal show={show} onHide={onHide} size="lg" centered className="">
       <Modal.Header closeButton>
-        <Modal.Title>Contact Me</Modal.Title>
+        <Modal.Title className="flex-grow text-center">Contact Me</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="contact-icons">
