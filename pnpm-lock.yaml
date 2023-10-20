@@ -64,6 +64,9 @@ dependencies:
   react-scripts:
     specifier: 5.0.1
     version: 5.0.1(@babel/plugin-syntax-flow@7.22.5)(@babel/plugin-transform-react-jsx@7.22.15)(eslint@8.51.0)(react@18.2.0)(typescript@4.9.5)
+  react-visibility-sensor:
+    specifier: ^5.1.1
+    version: 5.1.1(react-dom@18.2.0)(react@18.2.0)
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -8872,6 +8875,17 @@ packages:
       '@babel/runtime': 7.23.2
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-visibility-sensor@5.1.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-cTUHqIK+zDYpeK19rzW6zF9YfT4486TIgizZW53wEZ+/GPBbK7cNS0EHyJVyHYacwFEvvHLEKfgJndbemWhB/w==}
+    peerDependencies:
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

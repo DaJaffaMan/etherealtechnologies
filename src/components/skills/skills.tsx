@@ -41,7 +41,7 @@ const Skills: React.FC = () => {
         {categories.map((category, index) => (
           <button
             key={index}
-            className={`bg-stone-400 text-white px-2 py-1 m-1 rounded ${selectedCategories.includes(category) ? "bg-stone-600" : "bg-slate-500"}`}
+            className={`bg-stone-400 text-white px-2 py-1 m-1 rounded ${selectedCategories.includes(category) ? "bg-stone-600 button-transition" : "bg-slate-500 button-transition"}`}
             onClick={() => toggleCategory(category)}
           >
             {category}
