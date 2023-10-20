@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18 # Adjust the Node.js version as needed
+          node-version: 18
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -26,11 +26,11 @@ jobs:
 
       - name: Build
         run: pnpm run build
-        
+
       - name: Deploy to AWS S3
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --acl public-read --delete
+          args: --acl public-read --delete --exclude "node_modules/*"
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
