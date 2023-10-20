@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Ethereal Technologies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was boostraped with react-create-app, however I've proceeded to deploy a cloudfront distrobution to host this static webapp through AWS s3 for my business public wesbite.
 
 ## Available Scripts
 
