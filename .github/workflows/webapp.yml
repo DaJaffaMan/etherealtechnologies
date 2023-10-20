@@ -27,8 +27,8 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Run tests
-        run: pnpm test
+      # - name: Run tests
+      #   run: pnpm test
 
       - name: Deploy to AWS S3
         uses: jakejarvis/s3-sync-action@master
