@@ -37,4 +37,4 @@ jobs:
           aws-region: ${{ secrets.AWS_BUCKET_REGION }}
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./public/ ./build/* s3://etherealtechnologies.co.uk --delete
+        run: aws s3 sync ./build/ s3://etherealtechnologies.co.uk --delete
