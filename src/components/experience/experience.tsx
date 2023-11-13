@@ -37,6 +37,13 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
             </div>
             <h3 className="experience-company text-lg mb-2">{experience.company}</h3>
             <p className="experience-duration italic mb-4">{experience.duration}</p>
+            {experience.keyPoints &&
+              experience.keyPoints.map((keyPoint, index) => (
+                <p key={index} className="font-bold p-1 mb-1">
+                  • {keyPoint}
+                </p>
+              ))}
+
             <p className="experience-description">{experience.description}</p>
           </Carousel.Item>
         ))}

@@ -11,27 +11,44 @@ export const experiences: JobExperience[] = [
     title: "Cloud Platform Engineer",
     company: "Pynea",
     duration: "August 2023 - September 2023",
-    description:
-      "When I joined Pynea, there was virtually no code in sight. However, that quickly changed in my short time consulting for this fast-paced startup. Personally, I felt a strong sense of responsibility when I took charge of dockerizing the backend GraphQL server. It was a thrilling challenge to create a pipeline infrastructure that ensured no regressions during the build, test, and deployment phases of our dockerized application. Additionally, I created the media management system for all customer data, which was stored and managed on AWS.",
+    keyPoints: [
+      "Developed a media management system for customer data storage on federated AWS, incorporating AI assistance.",
+      "Skills: Cloud Architecture (AWS), Full Stack & DevOps (GraphQL, Pulumi), CI/CD (GitLab), Product Management.",
+    ],
+    description: `When I joined Pynea, there was virtually no code in sight. However, that quickly changed in my short time consulting for this fast-paced startup. Personally, I felt a strong sense of responsibility when I took charge of dockerizing the backend GraphQL server. It was a thrilling challenge to create a pipeline infrastructure that ensured no regressions during the build, test, and deployment phases of our dockerized application. Additionally, I created the media management system for all customer data, which was stored and managed on federated AWS. Using AI assistance to increase versatility within the workplace.`,
   },
   {
-    title: "Cloud Platform Engineer",
+    title: "Lead Engineer/Cloud Platform Consultant",
     company: "Sero",
     duration: "February 2021 - April 2023",
+    keyPoints: [
+      "Consulted on the migration of an external consultancy during the MVP development phase of a cloud project.",
+      "Interim team manager over a period of 18 months ensuring smooth business operations leading developers of all levels",
+      "Skills: Cloud Architecture (GCP), Full Stack & DevOps (React, GraphQL, Terraform), CI/CD (GitLab).",
+    ],
     description:
-      "Collaborated with an external consultancy during the transition from MVP to a stable, production-ready product. Building a federated supergraph API, managing diverse data, from housing specifications to user sessions, and delivering critical updates. Introduced a versatile Tailwind-based component library, enabling brand customization and unifying the UI across various web apps. Assisted with data processing, housing solutions, and customer management. Stepped up as an interim lead during team restructuring, gathering requirements and implementing a robust DevOps solution, resulting in faster and more reliable product releases.",
+      "I contributed to the successful collaboration with and migration of an external consultancy during the transition of building an MVP through to a stable, scalable, and productized product. Building a federated supergraph API, managing diverse data, from housing specifications to user sessions, and delivering critical updates. Introduced a versatile Tailwind-based component library, enabling brand customization and unifying the UI across various web apps. Assisted with data processing, housing solutions, and customer management. Stepped up as an interim lead during team restructuring, gathering requirements and implementing a robust DevOps solution, resulting in faster and more reliable product releases. Managing the team towards the end of the transition period from relying on external Consultants, to private Consultants, and now the in-house development team",
   },
   {
     title: "Fullstack Engineer",
     company: "Superdry",
     duration: "May 2020 - January 2021",
+    keyPoints: [
+      "Revitalised the customer-facing monolith to microservices, optimizing operational costs.",
+      "Implemented serverless architecture for API requests and enhanced data warehousing.",
+      "Skills: Cloud Architecture (AWS), Full Stack & DevOps (TypeScript, React, Fastify, Serverless).",
+    ],
     description:
-      "My journey at Superdry was a transformative experience. I helped lead the initiative to recreate the customer-facing monolith, moving away from PHP and into more flexible microservices. It was a dynamic project where I optimized and reduced operational costs by implementing lambdas and serverless architecture to handle API requests. I had a direct hand in parsing and storing customer products in the document-based database DynamoDB. This significantly improved customer experience by retaining customer sessions between visits and reducing page loading times through tools like ElastiCache and S3, along with configuring edge computing/CDN. I also dedicated time to simplifying data warehousing by migrating legacy scripts to a more maintainable execution in AWS, with the help of serverless and cloud functions.",
+      "My journey at Superdry was a transformative experience. I helped lead the initiative to recreate the customer-facing monolith, moving away from PHP and into more flexible microservices. It was a dynamic project where I optimised and reduced operational costs by implementing lambdas and serverless architecture to handle API requests. I had a direct hand in parsing and storing customer products in the document-based database DynamoDB. This significantly improved customer experience by retaining customer sessions between visits and reducing page loading times through tools like ElastiCache and S3, along with configuring edge computing/CDN. I also dedicated time to simplifying data warehousing by migrating legacy scripts to a more maintainable execution in AWS, with the help of serverless and cloud functions.",
   },
   {
     title: "Fullstack Engineer",
     company: "BJSS",
     duration: "November 2019 - April 2020",
+    keyPoints: [
+      "Delivered a greenfield project to unify funding systems across UK councils. GDS-compliant government web apps.",
+      "Skills: Full Stack Development (TypeScript, React, Fastify, GraphQL), Cloud Architecture",
+    ],
     description:
       "After successfully delivering on the previous project, I was immediately re-engaged to deliver on another new public sector project. This was a ground-up greenfield project that involved taking a dozen different funding systems used by councils across the UK and creating a fast, modern, GDS-compliant, scalable web platform. It was a challenging endeavor that required a high degree of flexibility in the application processing for funding opportunities. I was excited to use the latest technologies, including TypeScript, to make a significant impact and deliver results that exceeded expectations.",
   },
@@ -39,6 +56,10 @@ export const experiences: JobExperience[] = [
     title: "Fullstack Engineer",
     company: "BJSS",
     duration: "August 2018 - October 2019",
+    keyPoints: [
+      "Assisted in architecting a microservice software project for child and adult protection.",
+      "Skills: Full Stack Development (TypeScript, React, Java, Spring), Cloud Architecture (AWS).",
+    ],
     description:
       "My journey began with a critical mission: to assist in architecting a large and complex microservice software project focused on protecting children and vulnerable adults. It involved migrating an old, deprecated system from one organization to the public sector client. Working with sensitive data, I faced strict deadlines and high expectations. In a behavior-driven environment with extensive customer engagement, I delivered high-quality work that helped create a cohesive team at BJSS. I was not only technically skilled but also passionate about agile methodologies, which I shared with the team to adapt and overcome challenges.",
   },
