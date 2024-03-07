@@ -1,12 +1,18 @@
-import React from "react";
+import React from 'react';
 
 const AboutMe: React.FC = () => {
   return (
     <div className="mt-6 p-4">
       <p className="text-lg">
-        Passionate Engineer skilled in TypeScript/Javascript, Java, and various web frameworks like React and Angular. Experienced in crafting REST and GraphQL APIs, with a keen eye for devops,
-        architecture, and cloud-based development & database design. Eager to bring my expertise to new challenges and collaborate with a dynamic team. Dedicated to continuous learning, adapting, and
-        delivering top-tier solutions.
+        Passionate Engineer with extensive experience in
+        Typescript/Javascript/Java, strong general programming knowledge, and
+        regular experience creating and designing APIs, as well as building
+        webapps with frameworks like React, and Angular. Savvy with devops,
+        architecture and database design in cloud based solutions which I’ve
+        achieved certification for in my own time. I like to leverage my skills
+        to tackle new challenges and contribute to a dynamic team. Committed to
+        continuous learning and adapting to new environments while consistently
+        delivering high-quality solutions.
       </p>
     </div>
   );
