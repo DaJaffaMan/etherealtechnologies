@@ -60,11 +60,14 @@ The workflow requires a Service Account Key to authenticate with GCP. This key i
 **Secret Name**: `GOOGLE_SERVICES_JSON`
 
 #### Generating the Secret
-To generate the base64 encoded string from your local service account key file (assumed to be at `$HOME/.config/gcloud/serviceAccountKey.json`), run the following command:
+We have provided a helper script to generate the correct Service Account Key for the project.
 
-```bash
-base64 -i $HOME/.config/gcloud/serviceAccountKey.json | tr -d '\n' | pbcopy
-```
+1.  Run the setup script:
+    ```bash
+    ./setup_gcp_auth.sh
+    ```
+2.  Copy the **Raw JSON** output from the terminal.
+3.  Paste it directly into the GitHub Secret `GOOGLE_SERVICES_JSON`.
 
 *This command copies the output directly to your clipboard, ready to be pasted into GitHub Secrets.*
 
