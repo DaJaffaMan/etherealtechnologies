@@ -33,7 +33,7 @@ This repository contains the source code for the Ethereal Technologies corporate
 The infrastructure is managed via Terraform in the `terraform/` directory.
 
 ### State Management
-Terraform state is stored **locally** in `terraform/terraform.tfstate` and is **ignored** by Git. Do not delete this file if you want to manage existing resources.
+Terraform state is stored **remotely** in a Google Cloud Storage bucket (`ethereal-technologies-terraform-state`). This allows GitHub Actions to manage the infrastructure safely.
 
 ### Configuration
 Variables are defined in `terraform/variables.tf`.
@@ -75,8 +75,16 @@ We have provided a helper script to generate the correct Service Account Key for
 
 The Terraform output provides the Load Balancer IP address. You must configure your domain's DNS A record to point to this IP.
 
+To retrieve the IP address, run:
+
 ```bash
-# Get the IP address
 cd terraform
 terraform output load_balancer_ip
 ```
+
+**DNS Configuration Steps:**
+
+1.  Run the command above to get your Load Balancer IP.
+2.  Log in to your DNS provider (e.g., Squarespace).
+3.  Create an **A Record** for `@` (root domain) pointing to that IP.
+4.  **Important**: If you have an existing CNAME for `www` (e.g., pointing to `ext-sq.squarespace.com`), **delete it** and create a new CNAME record for `www` pointing to `etherealtechnologies.co.uk`.
