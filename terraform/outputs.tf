@@ -7,3 +7,8 @@ output "bucket_url" {
   description = "The URL of the GCS bucket"
   value       = google_storage_bucket.static_site.url
 }
+
+output "nameservers" {
+  description = "The nameservers for the Cloud DNS zone"
+  value       = google_dns_managed_zone.default.name_servers
+}
