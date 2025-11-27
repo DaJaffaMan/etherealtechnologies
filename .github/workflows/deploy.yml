@@ -37,7 +37,14 @@ jobs:
           CI: false # Prevent treating warnings as errors
 
       - name: Write Service Account Key
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /tmp/gcp-key.json
+        env:
+          GCP_KEY: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          echo "$GCP_KEY" > /tmp/gcp-key.json
+          echo "File type:"
+          file /tmp/gcp-key.json
+          echo "First line (masked):"
+          head -n 1 /tmp/gcp-key.json
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
