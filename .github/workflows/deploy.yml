@@ -36,20 +36,10 @@ jobs:
         env:
           CI: false # Prevent treating warnings as errors
 
-      - name: Write Service Account Key
-        env:
-          GCP_KEY: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: |
-          echo "$GCP_KEY" > /tmp/gcp-key.json
-          echo "File type:"
-          file /tmp/gcp-key.json
-          echo "First line (masked):"
-          head -n 1 /tmp/gcp-key.json
-
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: '/tmp/gcp-key.json'
+          credentials_json: '${{ secrets.GOOGLE_SERVICES_JSON }}'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -59,20 +49,14 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
 
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./terraform
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ./terraform
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
 
       - name: Upload to GCS
         uses: google-github-actions/upload-cloud-storage@v2
