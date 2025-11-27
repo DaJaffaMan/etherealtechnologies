@@ -49,7 +49,7 @@ resource "google_compute_global_address" "default" {
 
 # Managed SSL Certificate
 resource "google_compute_managed_ssl_certificate" "default" {
-  name = "website-ssl-cert-v2"
+  name = "website-ssl-cert-v3"
 
   managed {
     domains = [var.domain_name, "www.${var.domain_name}"]
