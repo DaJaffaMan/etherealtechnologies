@@ -1,46 +1,79 @@
-# Ethereal Technologies
+# Ethereal Technologies Corporate Site
 
-This app was boostraped with react-create-app, however I've proceeded to deploy a cloudfront distrobution to host this static webapp through AWS s3 for my business public wesbite.
+This repository contains the source code for the Ethereal Technologies corporate website, built with React and deployed to Google Cloud Platform (GCP).
 
-## Available Scripts
+## Architecture & Tools
 
-In the project directory, you can run:
+-   **Frontend**: React (Create React App)
+-   **Infrastructure**: Terraform
+-   **Cloud Provider**: Google Cloud Platform (GCP)
+    -   **Storage**: Google Cloud Storage (GCS) for static site hosting.
+    -   **Networking**: Global HTTPS Load Balancer with Google-managed SSL certificates.
+-   **CI/CD**: GitHub Actions for automated building and deployment.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   Node.js (v18+)
+-   Terraform (v1.5.7+)
+-   GCP Account & Project (`ethereal-technologies`)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Local Development
 
-### `npm test`
+1.  Install dependencies:
+    ```bash
+    npm install
+    ```
+2.  Start the development server:
+    ```bash
+    npm start
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Infrastructure (Terraform)
 
-### `npm run build`
+The infrastructure is managed via Terraform in the `terraform/` directory.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### State Management
+Terraform state is stored **locally** in `terraform/terraform.tfstate` and is **ignored** by Git. Do not delete this file if you want to manage existing resources.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Configuration
+Variables are defined in `terraform/variables.tf`.
+-   `domain_name`: `etherealtechnologies.co.uk`
+-   `bucket_name`: `ethereal-technologies-corporate-site`
+-   `project_id`: `ethereal-technologies`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Applying Changes
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
 
-### `npm run eject`
+## Deployment (CI/CD)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Deployments are automated using GitHub Actions on push to the `main` branch.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Secrets Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The workflow requires a Service Account Key to authenticate with GCP. This key is stored as a **Base64 encoded** GitHub Secret.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Secret Name**: `GOOGLE_SERVICES_JSON`
 
-## Learn More
+#### Generating the Secret
+To generate the base64 encoded string from your local service account key file (assumed to be at `$HOME/.config/gcloud/serviceAccountKey.json`), run the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+base64 -i $HOME/.config/gcloud/serviceAccountKey.json | tr -d '\n' | pbcopy
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*This command copies the output directly to your clipboard, ready to be pasted into GitHub Secrets.*
+
+## DNS Configuration
+
+The Terraform output provides the Load Balancer IP address. You must configure your domain's DNS A record to point to this IP.
+
+```bash
+# Get the IP address
+cd terraform
+terraform output load_balancer_ip
+```
