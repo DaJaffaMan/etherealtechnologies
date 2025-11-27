@@ -71,20 +71,28 @@ We have provided a helper script to generate the correct Service Account Key for
 
 *This command copies the output directly to your clipboard, ready to be pasted into GitHub Secrets.*
 
-## DNS Configuration
+## DNS Configuration (Migration to Cloud DNS)
 
-The Terraform output provides the Load Balancer IP address. You must configure your domain's DNS A record to point to this IP.
+We have migrated DNS management to **Google Cloud DNS**. This allows for better integration with GCP services and easier management of subdomains.
 
-To retrieve the IP address, run:
+### 1. Apply Terraform Changes
+Run the **Terraform Apply** workflow in GitHub Actions. This will create the Cloud DNS Managed Zone and replicate your existing records.
 
+### 2. Retrieve Nameservers
+After the Terraform apply completes, check the **Run Terraform Apply** step logs in GitHub Actions. You will see an output named `nameservers` listing the assigned Google nameservers (e.g., `ns-cloud-a1.googledomains.com`).
+
+Alternatively, you can retrieve them locally:
 ```bash
 cd terraform
-terraform output load_balancer_ip
+terraform output nameservers
 ```
 
-**DNS Configuration Steps:**
+### 3. Update Nameservers in Squarespace
+1.  Log in to your **Squarespace** account.
+2.  Navigate to **Domains** -> **DNS Settings**.
+3.  Select **Use Custom Nameservers**.
+4.  Enter the nameservers provided by the Terraform output.
+5.  Save your changes.
 
-1.  Run the command above to get your Load Balancer IP.
-2.  Log in to your DNS provider (e.g., Squarespace).
-3.  Create an **A Record** for `@` (root domain) pointing to that IP.
-4.  **Important**: If you have an existing CNAME for `www` (e.g., pointing to `ext-sq.squarespace.com`), **delete it** and create a new CNAME record for `www` pointing to `etherealtechnologies.co.uk`.
+> [!IMPORTANT]
+> DNS propagation can take up to 48 hours. During this time, traffic will gradually shift to the new nameservers. Since we replicated existing records, there should be no downtime.
