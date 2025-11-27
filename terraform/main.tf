@@ -52,7 +52,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
   name = "website-ssl-cert"
 
   managed {
-    domains = [var.domain_name]
+    domains = [var.domain_name, "www.${var.domain_name}"]
   }
 }
 
