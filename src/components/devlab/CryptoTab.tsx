@@ -102,6 +102,7 @@ export const CryptoTab: React.FC = () => {
         <div className="md:col-span-4 flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-[var(--text-muted)]">Input text to hash:</label>
           <input 
+            id="crypto-hash-input"
             type="text"
             value={cryptoText}
             onChange={(e) => setCryptoText(e.target.value)}
@@ -137,7 +138,7 @@ export const CryptoTab: React.FC = () => {
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faBolt} className="text-amber-400" />
             <span className="text-xs font-bold text-amber-400 uppercase tracking-widest">Avalanche Effect Demo</span>
-            <span className="text-[10px] text-[var(--text-muted)] ml-auto">1-character mutation → {diffPct}% hash divergence ({diffBits}/256 bits flipped)</span>
+            <span id="crypto-avalanche-pct" className="text-[10px] text-[var(--text-muted)] ml-auto">1-character mutation → {diffPct}% hash divergence ({diffBits}/256 bits flipped)</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] font-mono">
             <div className="flex flex-col gap-1">

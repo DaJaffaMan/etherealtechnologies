@@ -7,13 +7,13 @@ import {
   faCertificate, 
   faPlay 
 } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faLinkedin, faAndroid } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 export const Sidebar: React.FC = () => {
   return (
-    <aside className="lg:col-span-4 lg:sticky lg:top-8 flex flex-col gap-6 animate-fade-in-up">
+    <aside className="lg:col-span-4 lg:sticky lg:top-8 flex flex-col gap-6 animate-fade-in-up lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto custom-scrollbar lg:pr-2 lg:pb-4">
       {/* Main Profile Info Card */}
-      <div className="glass-panel rounded-3xl p-6 flex flex-col items-center text-center">
+      <div className="glass-panel rounded-3xl p-6 flex flex-col items-center text-center shrink-0">
         {/* Profile Image with Glow Ring */}
         <div className="relative w-40 h-40 rounded-full p-1 bg-gradient-to-tr from-orange-500 to-amber-400 shadow-xl overflow-hidden mb-6 group">
           <img 
@@ -76,10 +76,14 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Released Google Play App Card */}
-      <div className="glass-panel rounded-3xl p-6 glow-effect overflow-hidden">
+      <div className="glass-panel rounded-3xl p-6 glow-effect overflow-hidden shrink-0">
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-tr from-green-500 to-emerald-400 text-white shadow-md">
-            <FontAwesomeIcon icon={faAndroid} className="text-2xl" />
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-[var(--glass-bg)] border border-[var(--glass-border)] shrink-0">
+            <img 
+              src="agora_icon.png" 
+              alt="Agora Mobile App" 
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-bold">Featured Production Release</h3>
@@ -110,7 +114,7 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Certifications Card */}
-      <div className="glass-panel rounded-3xl p-6">
+      <div className="glass-panel rounded-3xl p-6 shrink-0">
         <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
           <FontAwesomeIcon icon={faCertificate} className="text-orange-500" />
           Certifications

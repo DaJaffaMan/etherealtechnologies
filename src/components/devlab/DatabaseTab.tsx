@@ -61,6 +61,7 @@ export const DatabaseTab: React.FC = () => {
           {ROW_OPTIONS.map(opt => (
             <button
               key={opt.value}
+              id={`db-row-btn-${opt.value}`}
               onClick={() => setRowCount(opt.value)}
               disabled={dbRunning}
               className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all disabled:opacity-40 ${rowCount === opt.value ? "bg-orange-500 text-white border-orange-500" : "bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-muted)] hover:border-orange-500/50"}`}
@@ -82,6 +83,7 @@ export const DatabaseTab: React.FC = () => {
         {/* Simulation Visual Tracker */}
         <div className="flex flex-col gap-4">
           <button 
+            id="db-run-query-btn"
             onClick={runDBSimulation} 
             disabled={dbRunning}
             className={`w-full py-3 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all ${dbRunning ? "bg-orange-500/20 text-orange-500 cursor-not-allowed" : "bg-orange-500 text-white hover:bg-orange-600 shadow-md"}`}
