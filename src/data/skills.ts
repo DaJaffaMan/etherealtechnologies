@@ -35,6 +35,7 @@ export const mySkills: Skill[] = [
   { name: "Single Page Applications (SPA)", category: "Web Development", experience: "5 - 10+ Years" },
 
   // Mobile App Development
+  { name: "Flutter", category: "Mobile App Development", experience: "1 - 3 Years" },
   { name: "React Native", category: "Mobile App Development", experience: "3 - 5 Years" },
   { name: "Ionic", category: "Mobile App Development", experience: "1 - 3 Years" },
 
@@ -61,6 +62,7 @@ export const mySkills: Skill[] = [
   { name: "MongoDB", category: "Database", experience: "5 - 10+ Years" },
   { name: "Cloud SQL", category: "Database", experience: "5 - 10+ Years" },
   { name: "MySQL", category: "Database", experience: "5 - 10+ Years" },
+  { name: "Neo4j", category: "Database", experience: "1 - 3 Years" },
 
   // Cloud & Infrastructure
   { name: "AWS", category: "Cloud & Infrastructure", experience: "5 - 10+ Years" },
@@ -143,6 +145,7 @@ export const mySkills: Skill[] = [
   { name: "SOAP", category: "API & Web Services", experience: "1 - 3 Years" },
   { name: "GraphQL", category: "API & Web Services", experience: "3 - 5 Years" },
   { name: "RPC", category: "API & Web Services", experience: "1 - 3 Years" },
+  { name: "Stripe", category: "API & Web Services", experience: "1 - 3 Years" },
 
   // Design & Visualization
   { name: "D3", category: "Design & Visualization", experience: "1 - 3 Years" },
