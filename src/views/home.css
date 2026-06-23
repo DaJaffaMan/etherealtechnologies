@@ -1,127 +1,87 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Custom styles for the interactive CV timeline and Dev Lab simulations */
+
+/* Smooth fade-in theme changes */
+body, .glass-panel, .glass-card, input, select, textarea, button {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-body {
-  /* Initially set the body to be fully transparent */
-  opacity: 0;
-  /* Apply the fadeIn animation over 2 seconds */
-  animation: fadeIn 2s forwards;
+/* Custom Webkit scrollbar for search tags */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }
 
-.centerpiece {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent black background for better text visibility */
-  position: relative;
+/* Star Schema Database Query Execution Flow Animations */
+@keyframes glow-red {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
 }
 
-.centerpiece h1 {
-  font-size: 3rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  color: white;
-  margin-bottom: 1rem;
+@keyframes glow-green {
+  0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
 }
 
-.centerpiece p {
-  font-size: 1.5rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  color: white;
+/* Drag & Drop Hashing borders */
+input[type="file"] {
+  border: 1px dashed var(--glass-border);
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(var(--primary), 0.05);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.centerpiece::before,
-.centerpiece::after {
-  content: "";
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: white;
+/* LED Matrix Board styling */
+.font-mono {
+  font-family: 'Fira Code', monospace;
 }
 
-.centerpiece::before {
-  top: 30%;
+/* Pulsing red ring for speed limit circle */
+@keyframes ring-pulse {
+  0%, 100% { border-color: rgb(220, 38, 38); box-shadow: 0 0 10px rgba(220, 38, 38, 0.5); }
+  50% { border-color: rgb(239, 68, 68); box-shadow: 0 0 25px rgba(239, 68, 68, 0.8); }
+}
+.border-red-600 {
+  animation: ring-pulse 1.5s infinite ease-in-out;
 }
 
-.centerpiece::after {
-  bottom: 30%;
+/* Floating labels adjustments */
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
-.line-with-notch {
-  position: absolute;
-  top: calc(30% - 116px);
-  left: 50%;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
+/* Safe positional alignments for form controls */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
 }
 
-.line-with-notch i {
-  margin-bottom: 10px;
+/* Interactive Timeline visual tweaks */
+.border-l-2 {
+  transition: border-color 0.4s ease;
 }
 
-.line-with-notch::before {
-  content: "";
-  width: 2px;
-  height: 69px;
-  background: white;
+/* Glowing filters matching jobs */
+.timeline-match {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 20px var(--primary-glow) !important;
 }
 
-.main-content-holder {
-  width: 80%;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: row;
-  border: 2px solid white;
-}
-
-.section {
-  flex: 1;
-  padding: 20px;
-  border-right: 2px solid white;
-}
-
-.transparent-button {
-  background-color: transparent;
-  font-weight: 600;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: 1px solid white;
-  border-radius: 0.25rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  margin-top: 1rem;
-}
-
-.transparent-button:hover {
-  background-color: #ffa500;
-  border-color: transparent;
-}
-
-.transparent-button:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.modal {
-  max-width: 100%;
-  margin: 0 auto;
-  max-height: 100vh;
-  overflow-y: auto;
-}
-
-.modal-50w .modal-dialog {
-  max-width: 50%;
-}
-
-@media (max-width: 768px) {
-  .modal-50w .modal-dialog {
-    max-width: 100%;
+/* Mobile optimizations */
+@media (max-width: 1024px) {
+  aside {
+    position: static !important;
   }
 }
