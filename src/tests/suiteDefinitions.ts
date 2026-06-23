@@ -121,5 +121,121 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
         }
       }
     ]
+  },
+  {
+    name: "src/views/home.ui.test.tsx",
+    tests: [
+      {
+        name: "should toggle light and dark themes on the page when theme buttons are clicked",
+        fn: async () => {
+          const darkBtn = document.getElementById("theme-btn-dark");
+          const lightBtn = document.getElementById("theme-btn-light");
+          const root = document.documentElement;
+
+          expectFn(darkBtn).toBeDefined();
+          expectFn(lightBtn).toBeDefined();
+
+          // Snapshot current state so we can restore after the test
+          const previousTheme = localStorage.getItem("theme") || "system";
+          const previouslyDark = root.classList.contains("dark");
+
+          // Click dark button
+          darkBtn?.click();
+          await new Promise(r => setTimeout(r, 50));
+          expectFn(root.classList.contains("dark")).toBe(true);
+
+          // Click light button
+          lightBtn?.click();
+          await new Promise(r => setTimeout(r, 50));
+          expectFn(root.classList.contains("dark")).toBe(false);
+
+          // Restore original theme so the test has no side effects on the browser session
+          const restoreBtn = document.getElementById(`theme-btn-${previousTheme}`);
+          restoreBtn?.click();
+          await new Promise(r => setTimeout(r, 50));
+          // Belt-and-braces: restore classList directly in case the button wasn't found
+          root.classList.toggle("dark", previouslyDark);
+          localStorage.setItem("theme", previousTheme);
+        }
+      },
+      {
+        name: "should update the packed byte buffer representation in real-time when speed and lane changes are made in the UI",
+        fn: async () => {
+          // Check if DevLab is already open (any tab button will be present)
+          const trigger = document.getElementById("dev-lab-trigger");
+          const isLabOpen = !!document.getElementById("dev-lab-tab-vms");
+          const wasTestsTab = !!document.getElementById("dev-lab-tab-tests")?.classList.contains("text-orange-500");
+
+          if (trigger && !isLabOpen) {
+            trigger.click();
+            await new Promise(r => setTimeout(r, 50));
+          }
+
+          // Select the Bitwise tab
+          const vmsTab = document.getElementById("dev-lab-tab-vms");
+          vmsTab?.click();
+          await new Promise(r => setTimeout(r, 50));
+
+          const speedSelect = document.getElementById("vms-speed-select") as HTMLSelectElement;
+          const warningBtn = document.getElementById("vms-lane-btn-warning");
+          const binaryDisplay = document.getElementById("vms-binary-packet");
+
+          expectFn(speedSelect).toBeDefined();
+          expectFn(warningBtn).toBeDefined();
+          expectFn(binaryDisplay).toBeDefined();
+
+          // Trigger speed limit 60 MPH selection
+          if (speedSelect) {
+            speedSelect.value = "60";
+            speedSelect.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+
+          // Trigger warning lane selection
+          warningBtn?.click();
+
+          // Wait for state rendering
+          await new Promise(r => setTimeout(r, 50));
+
+          // VMS Packet Byte 0 structure: Speed Limit (bits 0-3), Lane Status (bits 4-5)
+          // Speed 60 MPH -> mapped code = 6
+          // Warning lane -> mapped code = 3
+          // (6 << 4) | (3 << 2) = 96 | 12 = 108 => hex "6c" or "6C"
+          const displayVal = binaryDisplay?.textContent || "";
+          expectFn(displayVal.toLowerCase()).toContain("6c");
+
+          // Restore the Tests tab if it was active
+          if (wasTestsTab) {
+            const testsTab = document.getElementById("dev-lab-tab-tests");
+            testsTab?.click();
+            await new Promise(r => setTimeout(r, 50));
+          }
+        }
+      },
+      {
+        name: "should highlight matching experience cards when a skill tag is selected, and clear highlights when filters are reset",
+        fn: async () => {
+          const reactTag = document.getElementById("skill-tag-react");
+          expectFn(reactTag).toBeDefined();
+
+          // Click React tag to filter
+          reactTag?.click();
+          await new Promise(r => setTimeout(r, 50));
+
+          // Check that timeline matches are highlighted
+          const matchedElements = document.querySelectorAll(".timeline-match");
+          expectFn(matchedElements.length).toBeGreaterThan(0);
+
+          // Click the clear filters button
+          const clearBtn = document.getElementById("skills-clear-btn");
+          expectFn(clearBtn).toBeDefined();
+          clearBtn?.click();
+          await new Promise(r => setTimeout(r, 50));
+
+          // Check that highlights are removed
+          const clearedElements = document.querySelectorAll(".timeline-match");
+          expectFn(clearedElements.length).toBe(0);
+        }
+      }
+    ]
   }
 ];

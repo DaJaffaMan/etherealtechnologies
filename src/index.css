@@ -54,115 +54,143 @@
   code, pre {
     font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, monospace;
   }
-}
 
-/* Base style resets & scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbars */
-:root {
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-/* Scrollbar styles for older WebKit engines */
-@supports not (scrollbar-color: auto) {
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  html {
+    scroll-behavior: smooth;
   }
-  ::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
+
+  input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
   }
-  ::-webkit-scrollbar-thumb {
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+  }
+}
+
+@layer components {
+  /* Glassmorphism Classes */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 20px 0 var(--glass-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: var(--card-hover-border);
+    box-shadow: 0 8px 30px var(--primary-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Smooth fade-in theme changes */
+  body, .glass-panel, .glass-card, input, select, textarea, button {
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* Custom Webkit scrollbar for search tags */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
     border-radius: 9999px;
   }
-  ::-webkit-scrollbar-thumb:hover {
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
   }
-}
 
-/* Glassmorphism Classes */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 var(--glass-shadow);
-}
+  /* Drag & Drop Hashing borders */
+  input[type="file"] {
+    border: 1px dashed var(--glass-border);
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(249, 115, 22, 0.05);
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 20px 0 var(--glass-shadow);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  /* Scroll Progress Bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, #fb923c 100%);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
 
-.glass-card:hover {
-  border-color: var(--card-hover-border);
-  box-shadow: 0 8px 30px var(--primary-glow);
-  transform: translateY(-2px);
-}
 
-/* Scroll Progress Bar */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, #fb923c 100%);
-  z-index: 9999;
-  width: 0%;
-  transition: width 0.1s ease-out;
-}
+  /* Glowing filters matching jobs */
+  .timeline-match {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 20px var(--primary-glow) !important;
+  }
 
-/* Glow and micro-interaction details */
-.glow-effect {
-  position: relative;
-}
-.glow-effect::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.glow-effect:hover::after {
-  opacity: 1;
-}
-
-/* Custom animations */
-@keyframes fadeInUp {
-  from {
+  /* Glow and micro-interaction details */
+  .glow-effect {
+    position: relative;
+  }
+  .glow-effect::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+    z-index: -1;
     opacity: 0;
-    transform: translateY(12px);
+    transition: opacity 0.3s ease;
   }
-  to {
+  .glow-effect:hover::after {
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 1024px) {
+    aside {
+      position: static !important;
+    }
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+@layer utilities {
+  /* Scrollbar standard support */
+  :root {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
-  50% {
-    box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
-  }
-}
 
-.pulse-glowing {
-  animation: pulse-glow 2s infinite ease-in-out;
+  @supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+  }
 }

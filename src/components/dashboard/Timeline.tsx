@@ -27,6 +27,7 @@ export const Timeline: React.FC<TimelineProps> = ({ selectedSkills, toggleSkillF
           return (
             <div 
               key={idx} 
+              id={`job-card-${idx}`}
               className={`relative transition-all duration-500 ${
                 hasActiveFilters 
                   ? isMatching 
@@ -44,7 +45,7 @@ export const Timeline: React.FC<TimelineProps> = ({ selectedSkills, toggleSkillF
 
               {/* Job card */}
               <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 ${
-                hasActiveFilters && isMatching ? "border-orange-500/40 ring-1 ring-orange-500/10" : ""
+                hasActiveFilters && isMatching ? "border-orange-500/40 ring-1 ring-orange-500/10 timeline-match" : ""
               }`}>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
                   <h3 className="text-xl font-bold tracking-tight">{exp.title}</h3>

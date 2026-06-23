@@ -23,18 +23,21 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme }) => {
       {/* Theme Selector */}
       <div className="flex p-1 bg-[var(--glass-border)] rounded-full text-xs font-medium">
         <button 
+          id="theme-btn-system"
           onClick={() => setTheme("system")} 
           className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${theme === "system" ? "bg-orange-500 text-white shadow-sm" : "hover:text-orange-500"}`}
         >
           <FontAwesomeIcon icon={faLaptop} /> System
         </button>
         <button 
+          id="theme-btn-light"
           onClick={() => setTheme("light")} 
           className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${theme === "light" ? "bg-orange-500 text-white shadow-sm" : "hover:text-orange-500"}`}
         >
           <FontAwesomeIcon icon={faSun} /> Light
         </button>
         <button 
+          id="theme-btn-dark"
           onClick={() => setTheme("dark")} 
           className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${theme === "dark" ? "bg-orange-500 text-white shadow-sm" : "hover:text-orange-500"}`}
         >

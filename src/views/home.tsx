@@ -6,13 +6,13 @@ import { DevLab } from "../components/devlab/DevLab";
 import { Capabilities } from "../components/dashboard/Capabilities";
 import { Timeline } from "../components/dashboard/Timeline";
 import { Contact } from "../components/dashboard/Contact";
-import "./home.css";
 
 const HomePage: React.FC = () => {
-  // Theme State: 'light' | 'dark' | 'system'
-  const [theme, setTheme] = useState<string>(() => {
-    return localStorage.getItem("theme") || "system";
-  });
+  // The inline FOUC script in index.html already applies the correct class before
+  // first paint, so the useState initialiser only needs to read the stored value.
+  const [theme, setTheme] = useState<string>(
+    () => localStorage.getItem("theme") || "system"
+  );
 
   // Filters State shared for highlighting matching timeline jobs
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
@@ -34,33 +34,38 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Theme Switching Logic
+  // Theme Switching Logic — re-runs whenever the user picks a different theme
   useEffect(() => {
     const root = document.documentElement;
     localStorage.setItem("theme", theme);
 
     const applyTheme = (isDark: boolean) => {
-      if (isDark) {
-        root.classList.add("dark");
-      } else {
-        root.classList.remove("dark");
-      }
+      root.classList.toggle("dark", isDark);
     };
 
-    if (theme === "system" && typeof window !== "undefined" && window.matchMedia) {
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-      if (systemPrefersDark) {
-        applyTheme(systemPrefersDark.matches);
+    if (theme === "system") {
+      // Prefer the standard API; fall back gracefully in test/SSR environments
+      const mq = typeof window !== "undefined" && window.matchMedia
+        ? window.matchMedia("(prefers-color-scheme: dark)")
+        : null;
 
-        const listener = (e: MediaQueryListEvent) => {
-          applyTheme(e.matches);
-        };
-        systemPrefersDark.addEventListener("change", listener);
-        return () => systemPrefersDark.removeEventListener("change", listener);
+      if (mq) {
+        // Apply immediately based on current OS preference
+        applyTheme(mq.matches);
+        // Keep listening so live OS changes (e.g. switching macOS dark/light) update the page
+        const listener = (e: MediaQueryListEvent) => applyTheme(e.matches);
+        mq.addEventListener("change", listener);
+        return () => mq.removeEventListener("change", listener);
+      } else {
+        // Cannot detect system preference — default to dark
+        applyTheme(true);
       }
     } else {
       applyTheme(theme === "dark");
     }
+
+    // Explicit return for non-system branches (no cleanup needed)
+    return undefined;
   }, [theme]);
 
   const toggleSkillFilter = (skillName: string) => {

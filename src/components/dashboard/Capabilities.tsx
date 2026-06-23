@@ -54,6 +54,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
         {/* Filter Status Badge */}
         {selectedSkills.length > 0 && (
           <button 
+            id="skills-clear-btn"
             onClick={clearAllFilters}
             className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-500 hover:bg-orange-500 hover:text-white transition-all flex items-center gap-2"
           >
@@ -66,6 +67,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1">
           <input 
+            id="skills-search-input"
             type="text" 
             placeholder="Search engineering skill..."
             className="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] focus:outline-none focus:border-orange-500 text-sm placeholder-[var(--text-muted)]"
@@ -76,6 +78,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
         </div>
 
         <select 
+          id="skills-category-select"
           className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500 text-[var(--text-muted)]"
           value={activeSkillCategory}
           onChange={(e) => setActiveSkillCategory(e.target.value)}
@@ -95,6 +98,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
           return (
             <button
               key={idx}
+              id={`skill-tag-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
               onClick={() => toggleSkillFilter(skill.name)}
               className={`text-xs font-semibold px-3 py-2 rounded-xl transition-all duration-300 ${
                 isSelected 

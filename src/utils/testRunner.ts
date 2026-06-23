@@ -13,7 +13,7 @@ export interface TestSuite {
   tests: TestCase[];
 }
 
-// Custom browser assertion helper
+// Custom browser assertion helper — mirrors Jest's expect API
 class Expectation {
   constructor(private actual: any) {}
 
@@ -45,6 +45,12 @@ class Expectation {
       throw new Error(`Expected value > ${value} but got ${this.actual}`);
     }
   }
+
+  toBeDefined() {
+    if (this.actual === undefined) {
+      throw new Error(`Expected value to be defined but got undefined`);
+    }
+  }
 }
 
 export const expect = (actual: any) => new Expectation(actual);
@@ -61,6 +67,44 @@ export const getBrowserTestSuites = (): TestSuite[] => {
   }));
 };
 
+/** Runs a single suite in-place, calling onUpdate after each test and onLog for each log line. */
+export const runSingleSuite = async (
+  suite: TestSuite,
+  onUpdate: (updatedSuite: TestSuite) => void,
+  onLog: (line: string) => void
+): Promise<TestSuite> => {
+  onLog(`\nRUN  ${suite.name}`);
+  await new Promise(r => setTimeout(r, 200));
+
+  for (const testCase of suite.tests) {
+    testCase.status = "running";
+    onUpdate({ ...suite });
+    onLog(`  ⏳ ${testCase.name}`);
+    await new Promise(r => setTimeout(r, 80));
+
+    const start = performance.now();
+    try {
+      await testCase.fn();
+      testCase.status = "passed";
+      testCase.duration = Math.round(performance.now() - start);
+      onLog(`  ✓ ${testCase.name} (${testCase.duration}ms)`);
+    } catch (err: any) {
+      testCase.status = "failed";
+      testCase.duration = Math.round(performance.now() - start);
+      testCase.error = err.message || String(err);
+      onLog(`  ✕ ${testCase.name} (${testCase.duration}ms)\n    Error: ${testCase.error}`);
+    }
+    onUpdate({ ...suite });
+    await new Promise(r => setTimeout(r, 80));
+  }
+
+  const suiteFailed = suite.tests.some(t => t.status === "failed");
+  onLog(`${suiteFailed ? "FAIL" : "PASS"} ${suite.name}`);
+  await new Promise(r => setTimeout(r, 100));
+
+  return suite;
+};
+
 export const runBrowserTestSuite = async (
   suites: TestSuite[],
   onUpdate: (updatedSuites: TestSuite[], logLine: string) => void
@@ -68,18 +112,16 @@ export const runBrowserTestSuite = async (
   let allPassed = true;
 
   onUpdate(suites, `[JEST BROWSER RUNNER] Starting browser test execution environment...`);
-  await new Promise(r => setTimeout(r, 500));
+  await new Promise(r => setTimeout(r, 400));
 
   for (const suite of suites) {
     onUpdate(suites, `\nRUN  ${suite.name}`);
-    await new Promise(r => setTimeout(r, 300));
-    
-    let suiteFailed = false;
+    await new Promise(r => setTimeout(r, 250));
 
     for (const testCase of suite.tests) {
       testCase.status = "running";
       onUpdate(suites, `  ⏳ ${testCase.name}`);
-      await new Promise(r => setTimeout(r, 100));
+      await new Promise(r => setTimeout(r, 80));
 
       const start = performance.now();
       try {
@@ -91,19 +133,15 @@ export const runBrowserTestSuite = async (
         testCase.status = "failed";
         testCase.duration = Math.round(performance.now() - start);
         testCase.error = err.message || String(err);
-        suiteFailed = true;
         allPassed = false;
         onUpdate(suites, `  ✕ ${testCase.name} (${testCase.duration}ms)\n    Error: ${testCase.error}`);
       }
-      await new Promise(r => setTimeout(r, 100));
+      await new Promise(r => setTimeout(r, 80));
     }
 
-    if (suiteFailed) {
-      onUpdate(suites, `FAIL ${suite.name}`);
-    } else {
-      onUpdate(suites, `PASS ${suite.name}`);
-    }
-    await new Promise(r => setTimeout(r, 200));
+    const suiteFailed = suite.tests.some(t => t.status === "failed");
+    onUpdate(suites, `${suiteFailed ? "FAIL" : "PASS"} ${suite.name}`);
+    await new Promise(r => setTimeout(r, 150));
   }
 
   const totalSuites = suites.length;
