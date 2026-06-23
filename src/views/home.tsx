@@ -8,11 +8,14 @@ import { Timeline } from "../components/dashboard/Timeline";
 import { Contact } from "../components/dashboard/Contact";
 
 const HomePage: React.FC = () => {
-  // The inline FOUC script in index.html already applies the correct class before
-  // first paint, so the useState initialiser only needs to read the stored value.
-  const [theme, setTheme] = useState<string>(
-    () => localStorage.getItem("theme") || "system"
-  );
+  const [theme, setTheme] = useState<string>(() => {
+    try {
+      const stored = localStorage.getItem("theme");
+      return stored || "system";
+    } catch (e) {
+      return "system";
+    }
+  });
 
   // Filters State shared for highlighting matching timeline jobs
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
@@ -37,27 +40,33 @@ const HomePage: React.FC = () => {
   // Theme Switching Logic — re-runs whenever the user picks a different theme
   useEffect(() => {
     const root = document.documentElement;
-    localStorage.setItem("theme", theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {
+      // Ignore localStorage errors
+    }
 
     const applyTheme = (isDark: boolean) => {
       root.classList.toggle("dark", isDark);
     };
 
     if (theme === "system") {
-      // Prefer the standard API; fall back gracefully in test/SSR environments
       const mq = typeof window !== "undefined" && window.matchMedia
         ? window.matchMedia("(prefers-color-scheme: dark)")
         : null;
 
       if (mq) {
-        // Apply immediately based on current OS preference
         applyTheme(mq.matches);
-        // Keep listening so live OS changes (e.g. switching macOS dark/light) update the page
-        const listener = (e: MediaQueryListEvent) => applyTheme(e.matches);
-        mq.addEventListener("change", listener);
-        return () => mq.removeEventListener("change", listener);
+        const listener = (e: MediaQueryListEvent | MediaQueryList) => applyTheme(e.matches);
+        
+        if (mq.addEventListener) {
+          mq.addEventListener("change", listener as EventListener);
+          return () => mq.removeEventListener("change", listener as EventListener);
+        } else if (mq.addListener) {
+          mq.addListener(listener as (e: MediaQueryListEvent) => void);
+          return () => mq.removeListener(listener as (e: MediaQueryListEvent) => void);
+        }
       } else {
-        // Cannot detect system preference — default to dark
         applyTheme(true);
       }
     } else {

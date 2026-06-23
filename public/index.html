@@ -5,7 +5,21 @@
     <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0f172a" />
-    <meta name="description" content="Ethereal Technologies - Software Consultancy and Engineering by Jack Jefferies. Lead Fullstack & DevOps Engineer." />
+    <title>Jack Jefferies | Cloud Architect & Full-Stack Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Jack Jefferies, a highly skilled polyglot engineer and Cloud Architect specializing in highly scalable full-stack applications, event-driven architectures, and modern web/mobile technologies."
+    />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Jack Jefferies | Cloud Architect & Full-Stack Engineer" />
+    <meta property="og:description" content="Explore the portfolio and interactive DevLab of Jack Jefferies, featuring projects like the Agora Mobile Platform." />
+    <meta property="og:image" content="%PUBLIC_URL%/profile.jpeg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://etherealtechnologies.co.uk" />
+
+    <!-- Preload critical assets for LCP -->
+    <link rel="preload" as="image" href="%PUBLIC_URL%/profile.jpeg" />
     <meta name="color-scheme" content="light dark" />
     
     <!-- Google Fonts -->
@@ -16,16 +30,22 @@
     <!-- FOUC prevention script to set correct class on html load -->
     <script>
       {
-        const theme = localStorage.getItem("theme") || "system";
-        if (theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        try {
+          let theme = localStorage.getItem("theme");
+          // Remove legacy 'light' override logic; allow dynamic resolution
+          theme = theme || "system";
+          
+          if (theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {
           document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
         }
       }
     </script>
     <link rel="manifest" href="manifest.json" />
-    <title>Jack Jefferies | Ethereal Technologies Software Consultancy</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

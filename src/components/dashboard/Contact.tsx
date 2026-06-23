@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export const Contact: React.FC = () => {
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactMsg, setContactMsg] = useState("");
   const [contactStatus, setContactStatus] = useState("");
+  const { ref, isVisible } = useScrollReveal(0.1, true);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="glass-panel rounded-3xl p-6 md:p-8">
+    <section id="contact" ref={ref as any} className={`glass-panel rounded-3xl p-6 md:p-8 scroll-reveal ${isVisible ? 'is-visible' : ''}`}>
       <h2 className="text-2xl font-bold tracking-tight mb-2">Get in Touch</h2>
       <p className="text-xs text-[var(--text-muted)] mb-6">Send an inquiry via your email client or copy my direct contact address below.</p>
 

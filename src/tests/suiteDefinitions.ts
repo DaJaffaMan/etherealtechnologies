@@ -241,7 +241,55 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
     ]
   },
   {
-    name: "src/data/validation.test.ts",
+    name: "DevLab: Architecture Diagram (src/views/architectureTab.ui.test.tsx)",
+    tests: [
+      {
+        name: "should render the cloud architecture diagram tab correctly",
+        fn: async () => {
+          const trigger = document.getElementById("dev-lab-trigger");
+          const isLabOpen = !!document.getElementById("dev-lab-tab-architecture");
+          if (trigger && !isLabOpen) {
+            trigger.click();
+            await new Promise(r => setTimeout(r, 100)); // wait for mount
+          }
+
+          const architectureTab = document.getElementById("dev-lab-tab-architecture");
+          expectFn(architectureTab).toBeDefined();
+          architectureTab?.click();
+          
+          await new Promise(r => setTimeout(r, 50)); // wait for render
+        }
+      },
+      {
+        name: "should render the core structural elements of the Agora architecture map",
+        fn: async () => {
+          const trigger = document.getElementById("dev-lab-trigger");
+          const isLabOpen = !!document.getElementById("dev-lab-tab-architecture");
+          if (trigger && !isLabOpen) {
+            trigger.click();
+            await new Promise(r => setTimeout(r, 50));
+          }
+
+          const architectureTab = document.getElementById("dev-lab-tab-architecture");
+          architectureTab?.click();
+          await new Promise(r => setTimeout(r, 50));
+
+          // Check that key nodes are rendered by checking the document for the text
+          const hasFlutter = document.body.textContent?.includes("Flutter App");
+          const hasNest = document.body.textContent?.includes("NestJS + Apollo GraphQL");
+          const hasAuth = document.body.textContent?.includes("Firebase Auth Guard");
+          const hasNeo4j = document.body.textContent?.includes("Neo4j Graph DB");
+
+          expectFn(hasFlutter).toBe(true);
+          expectFn(hasNest).toBe(true);
+          expectFn(hasAuth).toBe(true);
+          expectFn(hasNeo4j).toBe(true);
+        }
+      }
+    ]
+  },
+  {
+    name: "General Validation: Static Data Sets (src/data/validation.test.ts)",
     tests: [
       {
         name: "should ensure all experiences have a title, company, duration, and at least one skill",

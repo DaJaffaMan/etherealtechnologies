@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { mySkills } from "../../data/skills";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 interface CapabilitiesProps {
   selectedSkills: string[];
@@ -22,6 +23,8 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
   activeSkillCategory,
   setActiveSkillCategory
 }) => {
+  const { ref, isVisible } = useScrollReveal(0.1, true);
+
   const getSkillsByCategory = () => {
     const categories: Record<string, string[]> = {
       "Programming & APIs": ["JavaScript/NodeJS", "TypeScript", "Java", "Python", "SQL", "REST", "GraphQL"],
@@ -44,7 +47,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
   };
 
   return (
-    <section className="glass-panel rounded-3xl p-6">
+    <section ref={ref as any} className={`glass-panel rounded-3xl p-6 scroll-reveal ${isVisible ? 'is-visible' : ''}`}>
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Capabilities Dashboard</h2>

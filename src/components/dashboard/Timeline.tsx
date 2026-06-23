@@ -1,5 +1,6 @@
 import React from "react";
 import { experiences } from "../../data/experiences";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 interface TimelineProps {
   selectedSkills: string[];
@@ -31,6 +32,89 @@ const HighlightedText: React.FC<{ text: string, keywords: string[] }> = ({ text,
   );
 };
 
+const TimelineCard: React.FC<{
+  exp: typeof experiences[0],
+  idx: number,
+  selectedSkills: string[],
+  toggleSkillFilter: (skillName: string) => void,
+  isMatching: boolean,
+  hasActiveFilters: boolean
+}> = ({ exp, idx, selectedSkills, toggleSkillFilter, isMatching, hasActiveFilters }) => {
+  const { ref, isVisible } = useScrollReveal(0.1, true);
+
+  return (
+    <div 
+      ref={ref as any}
+      id={`job-card-${idx}`}
+      className={`relative transition-all duration-500 scroll-reveal ${isVisible ? 'is-visible' : ''} ${
+        hasActiveFilters 
+          ? isMatching 
+            ? "opacity-100 scale-100" 
+            : "opacity-35 scale-95 blur-[0.4px]" 
+          : "opacity-100"
+      }`}
+    >
+      {/* Timeline Node Dot */}
+      <span className={`absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[var(--bg-overlay)] transition-all ${
+        hasActiveFilters && isMatching 
+          ? "border-orange-500 bg-orange-500 scale-125 shadow-lg" 
+          : "border-[var(--timeline-line)]"
+      }`}></span>
+
+      {/* Job card */}
+      <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 ${
+        hasActiveFilters && isMatching ? "border-orange-500/40 ring-1 ring-orange-500/10 timeline-match" : ""
+      }`}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+          <h3 className="text-xl font-bold tracking-tight">{exp.title}</h3>
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--glass-border)] text-[var(--text-muted)] self-start sm:self-auto">
+            {exp.duration}
+          </span>
+        </div>
+        
+        <h4 className="text-orange-500 font-bold text-sm tracking-wide uppercase leading-none">
+          {exp.company}
+        </h4>
+
+        {/* Collapsible content (description & tags) */}
+        <div 
+          className={`grid transition-all duration-500 ease-in-out ${
+            hasActiveFilters && !isMatching 
+              ? "grid-rows-[0fr] opacity-0" 
+              : "grid-rows-[1fr] opacity-100"
+          }`}
+        >
+          <div className="overflow-hidden flex flex-col gap-3">
+            <p className="text-sm leading-relaxed text-[var(--text-muted)] mt-1">
+              <HighlightedText text={exp.description} keywords={selectedSkills} />
+            </p>
+
+            {/* Experience Tech Tags */}
+            <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[var(--glass-border)]">
+              {exp.skills.map((skill, sIdx) => {
+                const isFilterActive = selectedSkills.includes(skill);
+                return (
+                  <button
+                    key={sIdx}
+                    onClick={() => toggleSkillFilter(skill)}
+                    className={`text-[10px] font-bold px-2 py-1 rounded-lg transition-all ${
+                      isFilterActive 
+                        ? "bg-orange-500 text-white" 
+                        : "bg-[var(--glass-border)] text-[var(--text-muted)] hover:text-orange-500"
+                    }`}
+                  >
+                    {skill}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Timeline: React.FC<TimelineProps> = ({ selectedSkills, toggleSkillFilter }) => {
   const doesJobMatchFilters = (exp: typeof experiences[0]) => {
     if (selectedSkills.length === 0) return true;
@@ -53,75 +137,15 @@ export const Timeline: React.FC<TimelineProps> = ({ selectedSkills, toggleSkillF
           const hasActiveFilters = selectedSkills.length > 0;
           
           return (
-            <div 
-              key={idx} 
-              id={`job-card-${idx}`}
-              className={`relative transition-all duration-500 ${
-                hasActiveFilters 
-                  ? isMatching 
-                    ? "opacity-100 scale-100" 
-                    : "opacity-35 scale-95 blur-[0.4px]" 
-                  : "opacity-100"
-              }`}
-            >
-              {/* Timeline Node Dot */}
-              <span className={`absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[var(--bg-overlay)] transition-all ${
-                hasActiveFilters && isMatching 
-                  ? "border-orange-500 bg-orange-500 scale-125 shadow-lg" 
-                  : "border-[var(--timeline-line)]"
-              }`}></span>
-
-              {/* Job card */}
-              <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 ${
-                hasActiveFilters && isMatching ? "border-orange-500/40 ring-1 ring-orange-500/10 timeline-match" : ""
-              }`}>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
-                  <h3 className="text-xl font-bold tracking-tight">{exp.title}</h3>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--glass-border)] text-[var(--text-muted)] self-start sm:self-auto">
-                    {exp.duration}
-                  </span>
-                </div>
-                
-                <h4 className="text-orange-500 font-bold text-sm tracking-wide uppercase leading-none">
-                  {exp.company}
-                </h4>
-
-                {/* Collapsible content (description & tags) */}
-                <div 
-                  className={`grid transition-all duration-500 ease-in-out ${
-                    hasActiveFilters && !isMatching 
-                      ? "grid-rows-[0fr] opacity-0" 
-                      : "grid-rows-[1fr] opacity-100"
-                  }`}
-                >
-                  <div className="overflow-hidden flex flex-col gap-3">
-                    <p className="text-sm leading-relaxed text-[var(--text-muted)] mt-1">
-                      <HighlightedText text={exp.description} keywords={selectedSkills} />
-                    </p>
-
-                    {/* Experience Tech Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[var(--glass-border)]">
-                      {exp.skills.map((skill, sIdx) => {
-                        const isFilterActive = selectedSkills.includes(skill);
-                        return (
-                          <button
-                            key={sIdx}
-                            onClick={() => toggleSkillFilter(skill)}
-                            className={`text-[10px] font-bold px-2 py-1 rounded-lg transition-all ${
-                              isFilterActive 
-                                ? "bg-orange-500 text-white" 
-                                : "bg-[var(--glass-border)] text-[var(--text-muted)] hover:text-orange-500"
-                            }`}
-                          >
-                            {skill}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TimelineCard 
+              key={idx}
+              exp={exp}
+              idx={idx}
+              selectedSkills={selectedSkills}
+              toggleSkillFilter={toggleSkillFilter}
+              isMatching={isMatching}
+              hasActiveFilters={hasActiveFilters}
+            />
           );
         })}
       </div>

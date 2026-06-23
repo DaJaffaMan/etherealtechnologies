@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTerminal, faLock, faDatabase, faFlask } from "@fortawesome/free-solid-svg-icons";
+import { faTerminal, faLock, faDatabase, faFlask, faCloud } from "@fortawesome/free-solid-svg-icons";
 import { CryptoTab } from "./CryptoTab";
 import { DatabaseTab } from "./DatabaseTab";
 import { BitwiseTab } from "./BitwiseTab";
+import { ArchitectureTab } from "./ArchitectureTab";
 import { TestRunnerTab } from "./TestRunnerTab";
 import { getBrowserTestSuites, TestSuite } from "../../utils/testRunner";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export const DevLab: React.FC = () => {
+  const { ref, isVisible } = useScrollReveal(0.1, true);
   const [labOpen, setLabOpen] = useState<boolean>(false);
   const [activeLabTab, setActiveLabTab] = useState<string>("crypto");
 
@@ -19,7 +22,7 @@ export const DevLab: React.FC = () => {
   const [testResults, setTestResults] = useState<boolean | null>(null);
 
   return (
-    <section className="glass-panel rounded-3xl overflow-hidden border border-orange-500/20">
+    <section ref={ref as any} className={`glass-panel rounded-3xl overflow-hidden border border-orange-500/20 scroll-reveal ${isVisible ? 'is-visible' : ''}`}>
       {/* Accordion Trigger Header */}
       <button 
         id="dev-lab-trigger"
@@ -60,6 +63,13 @@ export const DevLab: React.FC = () => {
               <FontAwesomeIcon icon={faDatabase} className="text-xs" /> OLAP vs OLTP Database
             </button>
             <button 
+              id="dev-lab-tab-architecture"
+              onClick={() => setActiveLabTab("architecture")}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "architecture" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+            >
+              <FontAwesomeIcon icon={faCloud} className="text-xs" /> Architecture
+            </button>
+            <button 
               id="dev-lab-tab-vms"
               onClick={() => setActiveLabTab("vms")}
               className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "vms" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
@@ -79,6 +89,7 @@ export const DevLab: React.FC = () => {
           <div className="transition-all duration-300">
             {activeLabTab === "crypto" && <CryptoTab />}
             {activeLabTab === "db" && <DatabaseTab />}
+            {activeLabTab === "architecture" && <ArchitectureTab />}
             {activeLabTab === "vms" && <BitwiseTab />}
             {activeLabTab === "tests" && (
               <TestRunnerTab
