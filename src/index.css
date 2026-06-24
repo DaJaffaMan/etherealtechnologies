@@ -98,8 +98,14 @@
     transform: translateY(-2px);
   }
 
-  /* Smooth fade-in theme changes */
-  body, .glass-panel, .glass-card, input, select, textarea, button {
+  /* Smooth fade-in theme changes (disabled during view transition flush) */
+  html:not(.theme-animating) body,
+  html:not(.theme-animating) .glass-panel,
+  html:not(.theme-animating) .glass-card,
+  html:not(.theme-animating) input,
+  html:not(.theme-animating) select,
+  html:not(.theme-animating) textarea,
+  html:not(.theme-animating) button {
     transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
   }
 
@@ -180,6 +186,31 @@
   @media (max-width: 1024px) {
     aside {
       position: static !important;
+    }
+  }
+
+  /* View Transition API - Theme Flush Animation */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+    animation: theme-flush 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes theme-flush {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
     }
   }
 }

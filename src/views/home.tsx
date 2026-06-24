@@ -47,7 +47,22 @@ const HomePage: React.FC = () => {
     }
 
     const applyTheme = (isDark: boolean) => {
-      root.classList.toggle("dark", isDark);
+      // If the browser doesn't support View Transitions or the user prefers reduced motion,
+      // fallback to instant toggle.
+      if (!document.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        root.classList.toggle("dark", isDark);
+        return;
+      }
+
+      // Execute smooth "flush" view transition
+      root.classList.add("theme-animating");
+      const transition = document.startViewTransition(() => {
+        root.classList.toggle("dark", isDark);
+      });
+      
+      transition.finished.finally(() => {
+        root.classList.remove("theme-animating");
+      });
     };
 
     if (theme === "system") {
