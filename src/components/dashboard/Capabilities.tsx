@@ -68,6 +68,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
           {/* Filter Status Badge (stops propagation so clicking it doesn't toggle accordion) */}
           {selectedSkills.length > 0 && (
             <div 
+              id="skills-clear-btn"
               onClick={(e) => {
                 e.stopPropagation();
                 clearAllFilters();
