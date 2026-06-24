@@ -60,7 +60,9 @@ const HomePage: React.FC = () => {
         root.classList.toggle("dark", isDark);
       });
       
-      transition.finished.finally(() => {
+      transition.finished.catch(() => {
+        // Ignore "Transition was skipped" DOMExceptions
+      }).finally(() => {
         root.classList.remove("theme-animating");
       });
     };
