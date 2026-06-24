@@ -202,15 +202,25 @@
 
   ::view-transition-new(root) {
     z-index: 2;
-    animation: theme-flush 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: theme-flush 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+    -webkit-mask-size: 100% 300%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: 0% 100%;
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+    mask-size: 100% 300%;
+    mask-repeat: no-repeat;
+    mask-position: 0% 100%;
   }
 
   @keyframes theme-flush {
     from {
-      clip-path: inset(0 0 100% 0);
+      -webkit-mask-position: 0% 100%;
+      mask-position: 0% 100%;
     }
     to {
-      clip-path: inset(0 0 0 0);
+      -webkit-mask-position: 0% 0%;
+      mask-position: 0% 0%;
     }
   }
 }
@@ -244,5 +254,29 @@
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Initial Page Load Bleed-in Animation */
+  .animate-page-bleed-in {
+    animation: page-bleed-in 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+    -webkit-mask-size: 100% 300%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: 0% 100%;
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+    mask-size: 100% 300%;
+    mask-repeat: no-repeat;
+    mask-position: 0% 100%;
+  }
+
+  @keyframes page-bleed-in {
+    from {
+      -webkit-mask-position: 0% 100%;
+      mask-position: 0% 100%;
+    }
+    to {
+      -webkit-mask-position: 0% 0%;
+      mask-position: 0% 0%;
+    }
   }
 }

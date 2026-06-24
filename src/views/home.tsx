@@ -17,6 +17,15 @@ const HomePage: React.FC = () => {
     }
   });
 
+  // State to manage the initial load bleed-in animation class
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Remove the bleed-in animation class after it completes (1.5s) to restore glassmorphism
+  useEffect(() => {
+    const timer = setTimeout(() => setIsInitialLoad(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Filters State shared for highlighting matching timeline jobs
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [skillsSearch, setSkillsSearch] = useState<string>("");
@@ -53,21 +62,31 @@ const HomePage: React.FC = () => {
         root.classList.toggle("dark", isDark);
         return;
       }
-
-      // Execute smooth "flush" view transition
-      root.classList.add("theme-animating");
-      const transition = document.startViewTransition(() => {
-        root.classList.toggle("dark", isDark);
-      });
       
-      // Catch all transition promises to prevent unhandled "Transition was skipped" AbortErrors
-      transition.ready.catch(() => {});
-      transition.updateCallbackDone.catch(() => {});
-      transition.finished.catch(() => {
-        // Ignore "Transition was skipped" DOMExceptions
-      }).finally(() => {
+      // Prevent running an animation if the theme is already correctly applied (e.g. initial load)
+      const isCurrentlyDark = root.classList.contains("dark");
+      if (isCurrentlyDark === isDark) return;
+
+      // Execute smooth "flush" view transition with try/catch fallback for synchronous errors (like inactive document on mount)
+      try {
+        root.classList.add("theme-animating");
+        const transition = document.startViewTransition(() => {
+          root.classList.toggle("dark", isDark);
+        });
+        
+        // Catch all transition promises to prevent unhandled "Transition was skipped" AbortErrors
+        transition.ready.catch(() => {});
+        transition.updateCallbackDone.catch(() => {});
+        transition.finished.catch(() => {
+          // Ignore "Transition was skipped" DOMExceptions
+        }).finally(() => {
+          root.classList.remove("theme-animating");
+        });
+      } catch (err) {
+        // Fallback if startViewTransition throws synchronously
+        root.classList.toggle("dark", isDark);
         root.classList.remove("theme-animating");
-      });
+      }
     };
 
     if (theme === "system") {
@@ -123,7 +142,7 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 z-[-1] bg-[var(--bg-overlay)] transition-colors duration-500"></div>
 
         {/* Global Wrapper Grid */}
-        <div className="w-full max-w-7xl mx-auto px-4 py-4 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+        <div className={`w-full max-w-7xl mx-auto px-4 py-4 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start ${isInitialLoad ? 'animate-page-bleed-in' : ''}`}>
           
           {/* SIDEBAR: Personal Profile & Fast Facts (Cols 1-4) */}
           <Sidebar />
