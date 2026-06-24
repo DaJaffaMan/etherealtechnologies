@@ -141,23 +141,25 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
           const previousTheme = localStorage.getItem("theme") || "system";
           const previouslyDark = root.classList.contains("dark");
 
-          // Click dark button
-          darkBtn?.click();
-          await new Promise(r => setTimeout(r, 50));
-          expectFn(root.classList.contains("dark")).toBe(true);
+          try {
+            // Click dark button
+            darkBtn?.click();
+            await new Promise(r => setTimeout(r, 50));
+            expectFn(root.classList.contains("dark")).toBe(true);
 
-          // Click light button
-          lightBtn?.click();
-          await new Promise(r => setTimeout(r, 50));
-          expectFn(root.classList.contains("dark")).toBe(false);
-
-          // Restore original theme so the test has no side effects on the browser session
-          const restoreBtn = document.getElementById(`theme-btn-${previousTheme}`);
-          restoreBtn?.click();
-          await new Promise(r => setTimeout(r, 50));
-          // Belt-and-braces: restore classList directly in case the button wasn't found
-          root.classList.toggle("dark", previouslyDark);
-          localStorage.setItem("theme", previousTheme);
+            // Click light button
+            lightBtn?.click();
+            await new Promise(r => setTimeout(r, 50));
+            expectFn(root.classList.contains("dark")).toBe(false);
+          } finally {
+            // Restore original theme so the test has no side effects on the browser session
+            const restoreBtn = document.getElementById(`theme-btn-${previousTheme}`);
+            restoreBtn?.click();
+            await new Promise(r => setTimeout(r, 50));
+            // Belt-and-braces: restore classList directly in case the button wasn't found
+            root.classList.toggle("dark", previouslyDark);
+            localStorage.setItem("theme", previousTheme);
+          }
         }
       },
       {

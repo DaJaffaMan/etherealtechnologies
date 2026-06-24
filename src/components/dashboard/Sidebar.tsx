@@ -7,7 +7,8 @@ import {
   faCertificate, 
   faPlay,
   faCloud,
-  faCircleNodes
+  faCircleNodes,
+  faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin, faAws, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
@@ -168,6 +169,34 @@ export const Sidebar: React.FC = () => {
               <div>
                 <h4 className="text-sm font-semibold">Graph Data Modelling Fundamentals</h4>
                 <p className="text-xs text-[var(--text-muted)]">September 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Languages Card */}
+        <div className="glass-panel rounded-3xl p-4 shrink-0 animate-fade-in-up" style={{ animationDelay: '500ms', animationFillMode: 'both' }}>
+          <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+            <FontAwesomeIcon icon={faGlobe} className="text-emerald-500" />
+            Languages
+          </h3>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-3 items-center">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold shrink-0 border border-slate-300 dark:border-slate-600 shadow-sm text-xs">
+                EN
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold">English</h4>
+                <p className="text-xs text-[var(--text-muted)]">Native Proficiency</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-center">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#E53935]/10 text-[#E53935] font-bold shrink-0 border border-[#E53935]/20 shadow-sm text-xs">
+                JP
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold">Japanese</h4>
+                <p className="text-xs text-[var(--text-muted)]">Intermediate (JLPT N3/N4 Level)</p>
               </div>
             </div>
           </div>
