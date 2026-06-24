@@ -58,7 +58,7 @@ const TimelineCard: React.FC<{
     <div 
       ref={ref as any}
       id={`job-card-${idx}`}
-      className={`relative transition-all duration-500 scroll-reveal ${isVisible ? 'is-visible' : ''} ${
+      className={`relative transition-all duration-500 scroll-reveal group ${isVisible ? 'is-visible' : ''} ${
         hasActiveFilters 
           ? isMatching 
             ? "opacity-100 scale-100" 
@@ -67,10 +67,10 @@ const TimelineCard: React.FC<{
       }`}
     >
       {/* Timeline Node Dot */}
-      <span className={`absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[var(--bg-overlay)] transition-all ${
+      <span className={`absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[var(--bg-overlay)] transition-all duration-300 ${
         hasActiveFilters && isMatching 
           ? "border-emerald-500 bg-emerald-500 scale-125 shadow-lg" 
-          : "border-[var(--timeline-line)]"
+          : "border-[var(--timeline-line)] group-hover:border-emerald-500 group-hover:bg-emerald-500/20 group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.4)]"
       }`}></span>
 
       <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 transition-colors ${
@@ -78,7 +78,7 @@ const TimelineCard: React.FC<{
       }`}>
         {/* Header - Clickable for Accordion */}
         <div 
-          className="flex flex-col cursor-pointer group"
+          className="flex flex-col cursor-pointer"
           onClick={() => setExpanded(!expanded)}
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">

@@ -15,14 +15,14 @@ export const Sidebar: React.FC = () => {
   const [mobileExpanded, setMobileExpanded] = useState(false);
 
   return (
-    <aside className="lg:col-span-4 lg:sticky lg:top-8 flex flex-col gap-4 animate-fade-in-up">
+    <aside className="lg:col-span-4 lg:sticky lg:top-8 flex flex-col gap-4">
       {/* Main Profile Info Card */}
-      <div className="glass-panel rounded-3xl p-4 flex flex-col shrink-0">
+      <div className="glass-panel rounded-3xl p-4 flex flex-col shrink-0 animate-fade-in-up" style={{ animationFillMode: 'both' }}>
         
         {/* Mobile Horizontal / Desktop Vertical Profile Header */}
         <div className="flex flex-row lg:flex-col items-center lg:text-center gap-4">
           {/* Profile Image with Glow Ring */}
-          <div className="relative w-20 h-20 lg:w-32 lg:h-32 rounded-full p-1 bg-gradient-to-tr from-emerald-500 to-emerald-300 shadow-xl overflow-hidden shrink-0 group">
+          <div className="relative w-20 h-20 lg:w-32 lg:h-32 rounded-full p-1 bg-gradient-to-tr from-emerald-500 to-emerald-300 shadow-xl overflow-hidden shrink-0 group animate-pulse-glowing">
             <img 
               src="profile.jpeg" 
               alt="Jack Jefferies" 
@@ -99,7 +99,7 @@ export const Sidebar: React.FC = () => {
       {/* Secondary Cards wrapped in Mobile Accordion state */}
       <div className={`flex-col gap-4 ${mobileExpanded ? 'flex' : 'hidden'} lg:flex`}>
         {/* Released Google Play App Card */}
-        <div className="glass-panel rounded-3xl p-4 glow-effect overflow-hidden shrink-0">
+        <div className="glass-panel rounded-3xl p-4 glow-effect overflow-hidden shrink-0 animate-fade-in-up" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-[var(--glass-bg)] border border-[var(--glass-border)] shrink-0">
               <img 
@@ -137,7 +137,7 @@ export const Sidebar: React.FC = () => {
         </div>
 
         {/* Certifications Card */}
-        <div className="glass-panel rounded-3xl p-4 shrink-0">
+        <div className="glass-panel rounded-3xl p-4 shrink-0 animate-fade-in-up" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
           <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
             <FontAwesomeIcon icon={faCertificate} className="text-emerald-500" />
             Certifications

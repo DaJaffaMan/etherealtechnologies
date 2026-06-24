@@ -6,8 +6,8 @@ module.exports = {
     extend: {
       keyframes: {
         fadeInUp: {
-          'from': { opacity: '0', transform: 'translateY(12px)' },
-          'to': { opacity: '1', transform: 'translateY(0)' },
+          'from': { opacity: '0', transform: 'translateY(12px)', filter: 'blur(8px)' },
+          'to': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
         },
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)' },
@@ -19,7 +19,7 @@ module.exports = {
         }
       },
       animation: {
-        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'pulse-glowing': 'pulseGlow 2s infinite ease-in-out',
         'ring-pulse': 'ringPulse 1.5s infinite ease-in-out',
       }

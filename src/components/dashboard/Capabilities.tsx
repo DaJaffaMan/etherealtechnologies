@@ -133,7 +133,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
                     className={`text-xs font-semibold px-3 py-2 rounded-xl transition-all duration-300 ${
                       isSelected 
                         ? "bg-emerald-500 text-white shadow-md scale-105" 
-                        : "bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/50 dark:border-slate-700/50 hover:bg-emerald-500/10 hover:text-emerald-500 hover:border-emerald-500/30"
+                        : "bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/50 dark:border-slate-700/50 hover:-translate-y-1 hover:scale-105 hover:shadow-md hover:bg-emerald-500/10 hover:text-emerald-500 hover:border-emerald-500/30"
                     }`}
                   >
                     {skill.name}
