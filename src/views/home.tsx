@@ -103,13 +103,13 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 z-[-1] bg-[var(--bg-overlay)] transition-colors duration-500"></div>
 
         {/* Global Wrapper Grid */}
-        <div className="w-full max-w-7xl mx-auto px-4 py-8 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="w-full max-w-7xl mx-auto px-4 py-4 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
           
           {/* SIDEBAR: Personal Profile & Fast Facts (Cols 1-4) */}
           <Sidebar />
 
           {/* MAIN WORKSPACE: Orchestrating child views (Cols 5-12) */}
-          <main className="lg:col-span-8 flex flex-col gap-8">
+          <main className="lg:col-span-8 flex flex-col gap-4 lg:gap-8">
             <Header theme={theme} setTheme={setTheme} />
             
             <Objective />

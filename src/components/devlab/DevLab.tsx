@@ -47,7 +47,7 @@ export const DevLab: React.FC = () => {
       {labOpen && (
         <div className="p-6 flex flex-col gap-6">
           {/* Lab Navigation Tabs */}
-          <div className="flex flex-wrap gap-2 border-b border-[var(--glass-border)] pb-3 text-sm">
+          <div className="flex flex-nowrap lg:flex-wrap overflow-x-auto hide-scrollbar gap-2 border-b border-[var(--glass-border)] pb-3 text-sm">
             <button 
               id="dev-lab-tab-crypto"
               onClick={() => setActiveLabTab("crypto")}
