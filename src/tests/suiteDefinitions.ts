@@ -526,11 +526,11 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
     name: "src/views/core.ui.test.tsx",
     tests: [
       {
-        name: "should render the correct name and job title in the sidebar profile",
+        name: "should render the correct company name and consultancy title in the sidebar profile",
         fn: () => {
           const content = document.body.textContent || "";
-          expectFn(content).toContain("Jack Jefferies");
-          expectFn(content.toLowerCase()).toContain("software engineer");
+          expectFn(content).toContain("Ethereal Technologies");
+          expectFn(content.toLowerCase()).toContain("software consultancy");
         }
       },
       {

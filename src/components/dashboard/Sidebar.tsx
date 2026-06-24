@@ -25,10 +25,10 @@ export const Sidebar: React.FC = () => {
           />
         </div>
 
-        <h1 className="text-3xl font-extrabold tracking-tight">Jack Jefferies</h1>
-        <p className="text-emerald-500 font-semibold text-lg mt-1">Fullstack Engineer & Cloud Architect</p>
-        <p className="text-sm font-medium tracking-wide uppercase text-[var(--text-muted)] mt-2">
-          Ethereal Technologies Ltd
+        <h1 className="text-3xl font-extrabold tracking-tight">Ethereal Technologies</h1>
+        <p className="text-emerald-500 font-semibold text-lg mt-1">Software Consultancy & Engineering</p>
+        <p className="text-sm font-medium tracking-wide text-[var(--text-muted)] mt-2">
+          Experts in software, consultants you can rely on.
         </p>
 
         {/* Quick Details Divider */}
@@ -50,7 +50,7 @@ export const Sidebar: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="text-emerald-500 w-4 h-4" />
-            <span>Bristol, UK (BS10 6SW)</span>
+            <span>Software Consultancy based in Bristol, UK</span>
           </div>
         </div>
 
