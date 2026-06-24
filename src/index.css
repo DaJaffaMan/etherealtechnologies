@@ -169,13 +169,11 @@
   .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
-    filter: blur(8px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .scroll-reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 
   /* Mobile optimizations */

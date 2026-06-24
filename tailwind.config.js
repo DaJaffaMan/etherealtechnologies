@@ -6,8 +6,8 @@ module.exports = {
     extend: {
       keyframes: {
         fadeInUp: {
-          'from': { opacity: '0', transform: 'translateY(12px)', filter: 'blur(8px)' },
-          'to': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+          'from': { opacity: '0', transform: 'translateY(12px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
         },
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)' },
