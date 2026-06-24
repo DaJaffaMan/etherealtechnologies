@@ -75,12 +75,12 @@ export const ArchitectureTab: React.FC = () => {
         {/* Level 3: Auth Layer */}
         <div className="flex justify-center relative z-10">
           <div 
-            className="group relative flex flex-col items-center justify-center w-full max-w-sm py-4 rounded-xl bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 shadow-md cursor-pointer hover:bg-orange-500/30 transition-colors"
+            className="group relative flex flex-col items-center justify-center w-full max-w-sm py-4 rounded-xl bg-gradient-to-r from-emerald-500/20 to-red-500/20 border border-emerald-500/30 shadow-md cursor-pointer hover:bg-emerald-500/30 transition-colors"
             onMouseEnter={() => handleHover('api')}
             onMouseLeave={() => handleHover(null)}
           >
-            <FontAwesomeIcon icon={faShieldHalved} className="text-2xl text-orange-500 mb-1" />
-            <span className="font-bold text-sm text-orange-500">Firebase Auth Guard (JWT)</span>
+            <FontAwesomeIcon icon={faShieldHalved} className="text-2xl text-emerald-500 mb-1" />
+            <span className="font-bold text-sm text-emerald-500">Firebase Auth Guard (JWT)</span>
             {activeTooltip === 'api' && (
               <div className="absolute right-full mr-3 w-48 p-3 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl text-xs backdrop-blur-md z-20">
                 <strong>Authentication Layer</strong><br/>

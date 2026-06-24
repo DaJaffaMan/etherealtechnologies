@@ -14,6 +14,7 @@ interface TestRunnerTabProps {
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   testResults: boolean | null;
   setTestResults: React.Dispatch<React.SetStateAction<boolean | null>>;
+  setActiveLabTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
@@ -22,6 +23,7 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
   isRunning, setIsRunning,
   progress, setProgress,
   testResults, setTestResults,
+  setActiveLabTab,
 }) => {
   // Ref for the terminal scroll *container* — we scroll it directly to avoid
   // scrollIntoView() hijacking the page viewport.
@@ -62,6 +64,10 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
 
     setTestResults(result);
     setIsRunning(false);
+    
+    // Guarantee we return to the Test UI once the suite is complete
+    // so users can actually see the output.
+    setActiveLabTab("tests");
   };
 
   const handleRunSingle = async (suiteIdx: number) => {
@@ -96,6 +102,9 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
     const passed = finalSuites.reduce((acc, s) => acc + s.tests.filter(t => t.status === "passed").length, 0);
     setProgress((passed / totalTests) * 100);
     setIsRunning(false);
+    
+    // Guarantee we return to the Test UI once the suite is complete
+    setActiveLabTab("tests");
   };
 
   const toggleExpanded = (key: string) => {
@@ -129,8 +138,8 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
             disabled={isRunning}
             className={`w-full py-3 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all ${
               isRunning 
-                ? "bg-orange-500/20 text-orange-500 cursor-not-allowed" 
-                : "bg-orange-500 text-white hover:bg-orange-600 shadow-md"
+                ? "bg-emerald-500/20 text-emerald-500 cursor-not-allowed" 
+                : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-md"
             }`}
           >
             {isRunning ? (
@@ -146,7 +155,7 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
 
           {/* Test Suites Overview List with per-suite re-run */}
           <div className="p-4 rounded-2xl bg-[var(--glass-border)] border border-[var(--glass-border)] flex flex-col gap-3">
-            <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Test Suites</span>
+            <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">Test Suites</span>
             <div className="flex flex-col gap-2 text-xs">
               {suites.map((suite, suiteIdx) => {
                 const isSuitePassed = suite.tests.length > 0 && suite.tests.every(t => t.status === "passed");
@@ -160,7 +169,7 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
                     <div className="flex items-center justify-between p-2 gap-2">
                       <button
                         onClick={() => toggleExpanded(`suite-${suiteIdx}`)}
-                        className="flex items-center gap-1.5 font-mono text-slate-300 truncate hover:text-orange-400 transition-colors text-left"
+                        className="flex items-center gap-1.5 font-mono text-slate-300 truncate hover:text-emerald-400 transition-colors text-left"
                       >
                         <FontAwesomeIcon
                           icon={expandedTests.has(`suite-${suiteIdx}`) ? faChevronDown : faChevronRight}
@@ -177,7 +186,7 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
                           onClick={() => handleRunSingle(suiteIdx)}
                           disabled={isRunning}
                           title="Re-run this suite"
-                          className="p-1 rounded text-[var(--text-muted)] hover:text-orange-400 disabled:opacity-30 transition-colors"
+                          className="p-1 rounded text-[var(--text-muted)] hover:text-emerald-400 disabled:opacity-30 transition-colors"
                         >
                           <FontAwesomeIcon icon={faRedo} className="text-[9px]" />
                         </button>
@@ -263,7 +272,7 @@ export const TestRunnerTab: React.FC<TestRunnerTabProps> = ({
                 else if (log.includes("✕")) color = "text-red-400 font-semibold";
                 else if (log.includes("Error:")) color = "text-red-500 font-mono pl-4";
                 else if (log.includes("Result:")) color = log.includes("SUCCESS") ? "text-green-400 font-bold border-t border-slate-800 pt-2" : "text-red-400 font-bold border-t border-slate-800 pt-2";
-                else if (log.startsWith("[JEST")) color = "text-orange-400 font-bold";
+                else if (log.startsWith("[JEST")) color = "text-emerald-400 font-bold";
 
                 return (
                   <div key={idx} className={`${color} whitespace-pre-wrap py-0.5`}>

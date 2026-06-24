@@ -59,7 +59,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
           <button 
             id="skills-clear-btn"
             onClick={clearAllFilters}
-            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-500 hover:bg-orange-500 hover:text-white transition-all flex items-center gap-2"
+            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white transition-all flex items-center gap-2"
           >
             Active: {selectedSkills.length} filters <FontAwesomeIcon icon={faTimes} />
           </button>
@@ -73,7 +73,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
             id="skills-search-input"
             type="text" 
             placeholder="Search engineering skill..."
-            className="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] focus:outline-none focus:border-orange-500 text-sm placeholder-[var(--text-muted)]"
+            className="w-full pl-9 pr-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] focus:outline-none focus:border-emerald-500 text-sm placeholder-[var(--text-muted)]"
             value={skillsSearch}
             onChange={(e) => setSkillsSearch(e.target.value)}
           />
@@ -82,7 +82,7 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
 
         <select 
           id="skills-category-select"
-          className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500 text-[var(--text-muted)]"
+          className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500 text-[var(--text-muted)]"
           value={activeSkillCategory}
           onChange={(e) => setActiveSkillCategory(e.target.value)}
         >
@@ -105,8 +105,8 @@ export const Capabilities: React.FC<CapabilitiesProps> = ({
               onClick={() => toggleSkillFilter(skill.name)}
               className={`text-xs font-semibold px-3 py-2 rounded-xl transition-all duration-300 ${
                 isSelected 
-                  ? "bg-orange-500 text-white shadow-md scale-105" 
-                  : "bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/50 dark:border-slate-700/50 hover:bg-orange-500/10 hover:text-orange-500 hover:border-orange-500/30"
+                  ? "bg-emerald-500 text-white shadow-md scale-105" 
+                  : "bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border border-slate-200/50 dark:border-slate-700/50 hover:bg-emerald-500/10 hover:text-emerald-500 hover:border-emerald-500/30"
               }`}
             >
               {skill.name}

@@ -47,7 +47,7 @@ export const Contact: React.FC = () => {
               value={contactName}
               onChange={(e) => setContactName(e.target.value)}
               placeholder="Enter your name"
-              className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500"
+              className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500"
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -58,7 +58,7 @@ export const Contact: React.FC = () => {
               value={contactEmail}
               onChange={(e) => setContactEmail(e.target.value)}
               placeholder="name@company.com"
-              className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500"
+              className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500"
             />
           </div>
         </div>
@@ -71,12 +71,12 @@ export const Contact: React.FC = () => {
             value={contactMsg}
             onChange={(e) => setContactMsg(e.target.value)}
             placeholder="Describe your consultancy needs..."
-            className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500 resize-none"
+            className="px-4 py-2.5 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500 resize-none"
           ></textarea>
         </div>
 
         {contactStatus && (
-          <p className="text-xs font-semibold text-orange-500 animate-pulse">
+          <p className="text-xs font-semibold text-emerald-500 animate-pulse">
             {contactStatus}
           </p>
         )}
@@ -84,14 +84,14 @@ export const Contact: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-3 mt-2">
           <button 
             type="submit"
-            className="flex-1 py-3 px-6 rounded-2xl font-bold bg-orange-500 text-white hover:bg-orange-600 transition-all shadow-md text-sm text-center"
+            className="flex-1 py-3 px-6 rounded-2xl font-bold bg-emerald-500 text-white hover:bg-emerald-600 transition-all shadow-md text-sm text-center"
           >
             Open Email Client
           </button>
           <button 
             type="button"
             onClick={copyEmailToClipboard}
-            className="py-3 px-6 rounded-2xl font-bold bg-[var(--glass-border)] text-[var(--text-muted)] hover:bg-orange-500 hover:text-white transition-all text-sm text-center"
+            className="py-3 px-6 rounded-2xl font-bold bg-[var(--glass-border)] text-[var(--text-muted)] hover:bg-emerald-500 hover:text-white transition-all text-sm text-center"
           >
             Copy Email Address
           </button>

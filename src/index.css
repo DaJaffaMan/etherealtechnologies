@@ -10,11 +10,11 @@
     --glass-bg: rgba(255, 255, 255, 0.72);
     --glass-border: rgba(255, 255, 255, 0.5);
     --glass-shadow: rgba(0, 0, 0, 0.05);
-    --primary: #f97316;
-    --primary-hover: #ea580c;
-    --primary-glow: rgba(249, 115, 22, 0.15);
+    --primary: #10b981;
+    --primary-hover: #059669;
+    --primary-glow: rgba(16, 185, 129, 0.15);
     --timeline-line: #cbd5e1;
-    --card-hover-border: rgba(249, 115, 22, 0.3);
+    --card-hover-border: rgba(16, 185, 129, 0.3);
     --scrollbar-track: #f1f5f9;
     --scrollbar-thumb: #cbd5e1;
 
@@ -29,11 +29,11 @@
     --glass-bg: rgba(30, 41, 59, 0.72);
     --glass-border: rgba(255, 255, 255, 0.12);
     --glass-shadow: rgba(0, 0, 0, 0.3);
-    --primary: #f97316;
-    --primary-hover: #fb923c;
-    --primary-glow: rgba(249, 115, 22, 0.25);
+    --primary: #10b981;
+    --primary-hover: #34d399;
+    --primary-glow: rgba(16, 185, 129, 0.25);
     --timeline-line: #334155;
-    --card-hover-border: rgba(249, 115, 22, 0.4);
+    --card-hover-border: rgba(16, 185, 129, 0.4);
     --scrollbar-track: #1e293b;
     --scrollbar-thumb: #475569;
   }
@@ -123,7 +123,7 @@
     border: 1px dashed var(--glass-border);
     padding: 1rem;
     border-radius: 12px;
-    background: rgba(249, 115, 22, 0.05);
+    background: rgba(16, 185, 129, 0.05);
     width: 100%;
     box-sizing: border-box;
   }
@@ -134,7 +134,7 @@
     top: 0;
     left: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary) 0%, #fb923c 100%);
+    background: linear-gradient(90deg, var(--primary) 0%, #34d399 100%);
     z-index: 9999;
     width: 0%;
     transition: width 0.1s ease-out;

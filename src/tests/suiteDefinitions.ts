@@ -166,7 +166,7 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
           // Check if DevLab is already open (any tab button will be present)
           const trigger = document.getElementById("dev-lab-trigger");
           const isLabOpen = !!document.getElementById("dev-lab-tab-vms");
-          const wasTestsTab = !!document.getElementById("dev-lab-tab-tests")?.classList.contains("text-orange-500");
+          const wasTestsTab = !!document.getElementById("dev-lab-tab-tests")?.classList.contains("text-emerald-500");
 
           if (trigger && !isLabOpen) {
             trigger.click();
@@ -503,7 +503,7 @@ export const getSharedTestSuites = (expectFn: (actual: any) => any): SharedTestS
 
           // Look for the strong tag injected by HighlightedText component
           // In JSDOM, classnames might not escape properly in querySelector. Let's just look for strong tags.
-          const highlightTags = document.querySelectorAll("strong.bg-orange-500\\/10");
+          const highlightTags = document.querySelectorAll("strong.bg-emerald-500\\/10");
           if (highlightTags.length > 0) {
             expectFn(highlightTags.length).toBeGreaterThan(0);
             expectFn(highlightTags[0].textContent?.toLowerCase()).toBe("docker");

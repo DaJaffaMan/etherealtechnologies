@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { experiences } from "../../data/experiences";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 
@@ -21,7 +23,7 @@ const HighlightedText: React.FC<{ text: string, keywords: string[] }> = ({ text,
       {parts.map((part, i) => {
         const isMatch = sortedKeywords.some(k => k.toLowerCase() === part.toLowerCase());
         return isMatch ? (
-          <strong key={i} className="text-orange-500 font-bold bg-orange-500/10 px-0.5 rounded-sm transition-colors duration-300">
+          <strong key={i} className="text-emerald-500 font-bold bg-emerald-500/10 px-0.5 rounded-sm transition-colors duration-300">
             {part}
           </strong>
         ) : (
@@ -41,6 +43,16 @@ const TimelineCard: React.FC<{
   hasActiveFilters: boolean
 }> = ({ exp, idx, selectedSkills, toggleSkillFilter, isMatching, hasActiveFilters }) => {
   const { ref, isVisible } = useScrollReveal(0.1, true);
+  const [expanded, setExpanded] = useState<boolean>(idx <= 1);
+
+  // Auto-expand/collapse based on filters
+  useEffect(() => {
+    if (hasActiveFilters && isMatching) {
+      setExpanded(true);
+    } else if (!hasActiveFilters) {
+      setExpanded(idx <= 1);
+    }
+  }, [hasActiveFilters, isMatching, idx]);
 
   return (
     <div 
@@ -57,32 +69,41 @@ const TimelineCard: React.FC<{
       {/* Timeline Node Dot */}
       <span className={`absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[var(--bg-overlay)] transition-all ${
         hasActiveFilters && isMatching 
-          ? "border-orange-500 bg-orange-500 scale-125 shadow-lg" 
+          ? "border-emerald-500 bg-emerald-500 scale-125 shadow-lg" 
           : "border-[var(--timeline-line)]"
       }`}></span>
 
-      {/* Job card */}
-      <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 ${
-        hasActiveFilters && isMatching ? "border-orange-500/40 ring-1 ring-orange-500/10 timeline-match" : ""
+      <div className={`glass-card rounded-3xl p-6 flex flex-col gap-3 transition-colors ${
+        hasActiveFilters && isMatching ? "border-emerald-500/40 ring-1 ring-emerald-500/10 timeline-match" : ""
       }`}>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
-          <h3 className="text-xl font-bold tracking-tight">{exp.title}</h3>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--glass-border)] text-[var(--text-muted)] self-start sm:self-auto">
-            {exp.duration}
-          </span>
+        {/* Header - Clickable for Accordion */}
+        <div 
+          className="flex flex-col cursor-pointer group"
+          onClick={() => setExpanded(!expanded)}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+            <h3 className="text-xl font-bold tracking-tight group-hover:text-emerald-500 transition-colors">{exp.title}</h3>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--glass-border)] text-[var(--text-muted)] self-start sm:self-auto">
+              {exp.duration}
+            </span>
+          </div>
+          
+          <div className="flex items-center justify-between mt-1">
+            <h4 className="text-emerald-500 font-bold text-sm tracking-wide uppercase leading-none">
+              {exp.company}
+            </h4>
+            <FontAwesomeIcon 
+              icon={faChevronDown} 
+              className={`text-[var(--text-muted)] transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} 
+            />
+          </div>
         </div>
-        
-        <h4 className="text-orange-500 font-bold text-sm tracking-wide uppercase leading-none">
-          {exp.company}
-        </h4>
 
         {/* Collapsible content (description & tags) */}
         <div 
           className={`grid transition-all duration-500 ease-in-out ${
-            hasActiveFilters && !isMatching 
-              ? "grid-rows-[0fr] opacity-0" 
-              : "grid-rows-[1fr] opacity-100"
-          }`}
+            expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          } ${hasActiveFilters && !isMatching ? "hidden" : ""}`}
         >
           <div className="overflow-hidden flex flex-col gap-3">
             <p className="text-sm leading-relaxed text-[var(--text-muted)] mt-1">
@@ -99,8 +120,8 @@ const TimelineCard: React.FC<{
                     onClick={() => toggleSkillFilter(skill)}
                     className={`text-[10px] font-bold px-2 py-1 rounded-lg transition-all ${
                       isFilterActive 
-                        ? "bg-orange-500 text-white" 
-                        : "bg-[var(--glass-border)] text-[var(--text-muted)] hover:text-orange-500"
+                        ? "bg-emerald-500 text-white" 
+                        : "bg-[var(--glass-border)] text-[var(--text-muted)] hover:text-emerald-500"
                     }`}
                   >
                     {skill}

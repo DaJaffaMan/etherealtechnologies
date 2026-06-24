@@ -56,7 +56,7 @@ export const DatabaseTab: React.FC = () => {
 
       {/* Row-count scale selector */}
       <div className="p-4 rounded-2xl bg-[var(--glass-border)] border border-[var(--glass-border)] flex flex-col gap-3">
-        <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Dataset Scale</span>
+        <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">Dataset Scale</span>
         <div className="flex gap-2 flex-wrap">
           {ROW_OPTIONS.map(opt => (
             <button
@@ -64,7 +64,7 @@ export const DatabaseTab: React.FC = () => {
               id={`db-row-btn-${opt.value}`}
               onClick={() => setRowCount(opt.value)}
               disabled={dbRunning}
-              className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all disabled:opacity-40 ${rowCount === opt.value ? "bg-orange-500 text-white border-orange-500" : "bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-muted)] hover:border-orange-500/50"}`}
+              className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all disabled:opacity-40 ${rowCount === opt.value ? "bg-emerald-500 text-white border-emerald-500" : "bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-muted)] hover:border-emerald-500/50"}`}
             >
               {opt.label}
             </button>
@@ -75,7 +75,7 @@ export const DatabaseTab: React.FC = () => {
           &nbsp;&nbsp;·&nbsp;&nbsp;
           OLAP projected: <span className="text-green-400 font-bold">{targetOlap.toLocaleString()} ms</span>
           &nbsp;&nbsp;·&nbsp;&nbsp;
-          Speedup: <span className="text-orange-400 font-bold">~{speedup}×</span>
+          Speedup: <span className="text-emerald-400 font-bold">~{speedup}×</span>
         </p>
       </div>
 
@@ -86,7 +86,7 @@ export const DatabaseTab: React.FC = () => {
             id="db-run-query-btn"
             onClick={runDBSimulation} 
             disabled={dbRunning}
-            className={`w-full py-3 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all ${dbRunning ? "bg-orange-500/20 text-orange-500 cursor-not-allowed" : "bg-orange-500 text-white hover:bg-orange-600 shadow-md"}`}
+            className={`w-full py-3 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all ${dbRunning ? "bg-emerald-500/20 text-emerald-500 cursor-not-allowed" : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-md"}`}
           >
             {dbRunning ? (
               <><FontAwesomeIcon icon={faSpinner} className="animate-spin" /> Query Running...</>
@@ -155,7 +155,7 @@ GROUP  BY month_key;
 
           {/* Schema diagram */}
           <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white flex flex-col gap-3">
-            <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Schema Comparison</span>
+            <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">Schema Comparison</span>
             <div className="grid grid-cols-2 gap-3 text-[10px] font-mono">
               {/* OLTP ERD */}
               <div className="flex flex-col gap-1.5">
@@ -167,7 +167,7 @@ GROUP  BY month_key;
                   { name: "tenants",      cols: ["id PK", "name"] },
                 ].map(t => (
                   <div key={t.name} className="border border-slate-700 rounded p-1.5">
-                    <p className="text-orange-400 font-bold">{t.name}</p>
+                    <p className="text-emerald-400 font-bold">{t.name}</p>
                     {t.cols.map(c => <p key={c} className="text-slate-400 pl-2">{c}</p>)}
                   </div>
                 ))}
@@ -176,11 +176,11 @@ GROUP  BY month_key;
               <div className="flex flex-col gap-1.5">
                 <p className="text-green-400 font-bold text-[9px] uppercase tracking-wider mb-1">OLAP — star schema</p>
                 <div className="border border-slate-700 rounded p-1.5">
-                  <p className="text-orange-400 font-bold">fact_measurements</p>
+                  <p className="text-emerald-400 font-bold">fact_measurements</p>
                   {["id PK", "month_key FK", "device_name", "location", "tenant", "value"].map(c => <p key={c} className="text-slate-400 pl-2">{c}</p>)}
                 </div>
                 <div className="border border-slate-700 rounded p-1.5">
-                  <p className="text-orange-400 font-bold">dim_time</p>
+                  <p className="text-emerald-400 font-bold">dim_time</p>
                   {["month_key PK", "year", "quarter", "month_label"].map(c => <p key={c} className="text-slate-400 pl-2">{c}</p>)}
                 </div>
               </div>
@@ -190,7 +190,7 @@ GROUP  BY month_key;
           {/* Chart Comparison Results */}
           <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-white flex flex-col justify-between min-h-[200px]">
             <div>
-              <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Simulation Audit Metrics</span>
+              <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">Simulation Audit Metrics</span>
               <p className="text-xs text-slate-400 mt-1">Query time comparison at {rowLabel} (shorter is better).</p>
             </div>
             <div className="flex flex-col gap-5 my-4">

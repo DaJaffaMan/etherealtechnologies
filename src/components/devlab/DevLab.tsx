@@ -22,15 +22,15 @@ export const DevLab: React.FC = () => {
   const [testResults, setTestResults] = useState<boolean | null>(null);
 
   return (
-    <section ref={ref as any} className={`glass-panel rounded-3xl overflow-hidden border border-orange-500/20 scroll-reveal ${isVisible ? 'is-visible' : ''}`}>
+    <section ref={ref as any} className={`glass-panel rounded-3xl overflow-hidden border border-emerald-500/20 scroll-reveal ${isVisible ? 'is-visible' : ''}`}>
       {/* Accordion Trigger Header */}
       <button 
         id="dev-lab-trigger"
         onClick={() => setLabOpen(!labOpen)}
-        className="w-full px-6 py-5 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-amber-500/5 hover:from-orange-500/10 hover:to-amber-500/10 transition-all border-b border-[var(--glass-border)]"
+        className="w-full px-6 py-5 flex items-center justify-between text-left bg-gradient-to-r from-emerald-500/5 to-amber-500/5 hover:from-emerald-500/10 hover:to-amber-500/10 transition-all border-b border-[var(--glass-border)]"
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center shadow-md animate-pulse-glowing">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-amber-500 text-white flex items-center justify-center shadow-md animate-pulse-glowing">
             <FontAwesomeIcon icon={faFlask} />
           </div>
           <div>
@@ -38,7 +38,7 @@ export const DevLab: React.FC = () => {
             <p className="text-xs text-[var(--text-muted)] mt-0.5">Explore real-time client-side demonstrations of core architectural concepts.</p>
           </div>
         </div>
-        <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-[var(--glass-border)] hover:bg-orange-500 hover:text-white transition-all">
+        <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-[var(--glass-border)] hover:bg-emerald-500 hover:text-white transition-all">
           {labOpen ? "Close Lab" : "Open Lab"}
         </span>
       </button>
@@ -51,35 +51,35 @@ export const DevLab: React.FC = () => {
             <button 
               id="dev-lab-tab-crypto"
               onClick={() => setActiveLabTab("crypto")}
-              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "crypto" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "crypto" ? "border-emerald-500 text-emerald-500" : "border-transparent text-[var(--text-muted)] hover:text-emerald-500"}`}
             >
               <FontAwesomeIcon icon={faLock} className="text-xs" /> Cryptography & Hashing
             </button>
             <button 
               id="dev-lab-tab-db"
               onClick={() => setActiveLabTab("db")}
-              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "db" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "db" ? "border-emerald-500 text-emerald-500" : "border-transparent text-[var(--text-muted)] hover:text-emerald-500"}`}
             >
               <FontAwesomeIcon icon={faDatabase} className="text-xs" /> OLAP vs OLTP Database
             </button>
             <button 
               id="dev-lab-tab-architecture"
               onClick={() => setActiveLabTab("architecture")}
-              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "architecture" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "architecture" ? "border-emerald-500 text-emerald-500" : "border-transparent text-[var(--text-muted)] hover:text-emerald-500"}`}
             >
               <FontAwesomeIcon icon={faCloud} className="text-xs" /> Architecture
             </button>
             <button 
               id="dev-lab-tab-vms"
               onClick={() => setActiveLabTab("vms")}
-              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "vms" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "vms" ? "border-emerald-500 text-emerald-500" : "border-transparent text-[var(--text-muted)] hover:text-emerald-500"}`}
             >
               <FontAwesomeIcon icon={faTerminal} className="text-xs" /> Bitwise Roadside Protocols
             </button>
             <button 
               id="dev-lab-tab-tests"
               onClick={() => setActiveLabTab("tests")}
-              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "tests" ? "border-orange-500 text-orange-500" : "border-transparent text-[var(--text-muted)] hover:text-orange-500"}`}
+              className={`pb-2 px-3 border-b-2 font-bold transition-all flex items-center gap-2 ${activeLabTab === "tests" ? "border-emerald-500 text-emerald-500" : "border-transparent text-[var(--text-muted)] hover:text-emerald-500"}`}
             >
               <FontAwesomeIcon icon={faTerminal} className="text-xs" /> Automated Unit Tests
             </button>
@@ -103,6 +103,7 @@ export const DevLab: React.FC = () => {
                 setProgress={setProgress}
                 testResults={testResults}
                 setTestResults={setTestResults}
+                setActiveLabTab={setActiveLabTab}
               />
             )}
           </div>

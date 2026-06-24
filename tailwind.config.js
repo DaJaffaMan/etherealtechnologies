@@ -10,8 +10,8 @@ module.exports = {
           'to': { opacity: '1', transform: 'translateY(0)' },
         },
         pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 15px rgba(249, 115, 22, 0.3)' },
-          '50%': { boxShadow: '0 0 25px rgba(249, 115, 22, 0.6)' },
+          '0%, 100%': { boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)' },
+          '50%': { boxShadow: '0 0 25px rgba(16, 185, 129, 0.6)' },
         },
         ringPulse: {
           '0%, 100%': { borderColor: 'rgb(220, 38, 38)', boxShadow: '0 0 10px rgba(220, 38, 38, 0.5)' },

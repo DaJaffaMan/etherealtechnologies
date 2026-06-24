@@ -106,7 +106,7 @@ export const CryptoTab: React.FC = () => {
             type="text"
             value={cryptoText}
             onChange={(e) => setCryptoText(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500"
+            className="px-3 py-2 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500"
           />
         </div>
         <div className="md:col-span-8 flex flex-col gap-1.5">
@@ -120,11 +120,11 @@ export const CryptoTab: React.FC = () => {
       {/* Encoding Pipeline Visualization */}
       {pipelineSteps.length > 0 && (
         <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <span className="text-[10px] font-bold text-orange-500 uppercase tracking-widest font-mono">Encoding Pipeline</span>
+          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest font-mono">Encoding Pipeline</span>
           <div className="flex flex-col gap-1">
             {pipelineSteps.map((step, i) => (
               <div key={i} className="flex items-start gap-2 text-[11px] font-mono">
-                <span className="text-orange-400 shrink-0 w-4 text-right">{i + 1}.</span>
+                <span className="text-emerald-400 shrink-0 w-4 text-right">{i + 1}.</span>
                 <span className="text-slate-300 break-all">{step}</span>
               </div>
             ))}
@@ -173,12 +173,12 @@ export const CryptoTab: React.FC = () => {
           <input 
             type="file" 
             onChange={(e) => handleFileChange(e, "A")}
-            className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600 file:cursor-pointer"
+            className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-500 file:text-white hover:file:bg-emerald-600 file:cursor-pointer"
           />
           {fileA && (
             <div className="flex flex-col gap-1 mt-1">
               <span className="text-xs font-medium text-[var(--text-muted)]">Size: {fileA.size} bytes</span>
-              <code className="text-[10px] font-mono select-all bg-slate-900 text-orange-400 p-1.5 rounded overflow-x-auto break-all">{hashA}</code>
+              <code className="text-[10px] font-mono select-all bg-slate-900 text-emerald-400 p-1.5 rounded overflow-x-auto break-all">{hashA}</code>
             </div>
           )}
         </div>
@@ -192,12 +192,12 @@ export const CryptoTab: React.FC = () => {
           <input 
             type="file" 
             onChange={(e) => handleFileChange(e, "B")}
-            className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600 file:cursor-pointer"
+            className="text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-500 file:text-white hover:file:bg-emerald-600 file:cursor-pointer"
           />
           {fileB && (
             <div className="flex flex-col gap-1 mt-1">
               <span className="text-xs font-medium text-[var(--text-muted)]">Size: {fileB.size} bytes</span>
-              <code className="text-[10px] font-mono select-all bg-slate-900 text-orange-400 p-1.5 rounded overflow-x-auto break-all">{hashB}</code>
+              <code className="text-[10px] font-mono select-all bg-slate-900 text-emerald-400 p-1.5 rounded overflow-x-auto break-all">{hashB}</code>
             </div>
           )}
         </div>

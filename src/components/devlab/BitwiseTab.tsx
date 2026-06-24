@@ -18,7 +18,7 @@ const BitField: React.FC<{ value: number }> = ({ value }) => {
   const bits = Array.from({ length: 8 }, (_, i) => (value >> (7 - i)) & 1);
   // bits[0-3] = speed code (upper nibble), bits[4-5] = lane code (next 2 bits), bits[6-7] = reserved
   const regionColor = (i: number) => {
-    if (i <= 3) return bits[i] ? "bg-orange-500 text-white" : "bg-orange-500/10 text-orange-400";
+    if (i <= 3) return bits[i] ? "bg-emerald-500 text-white" : "bg-emerald-500/10 text-emerald-400";
     if (i <= 5) return bits[i] ? "bg-blue-500 text-white" : "bg-blue-500/10 text-blue-400";
     return bits[i] ? "bg-slate-600 text-white" : "bg-slate-700 text-slate-500";
   };
@@ -35,7 +35,7 @@ const BitField: React.FC<{ value: number }> = ({ value }) => {
         ))}
       </div>
       <div className="flex gap-0 text-[8px] font-mono text-slate-500">
-        <span className="w-[116px] text-center text-orange-400">speed code (bits 7-4)</span>
+        <span className="w-[116px] text-center text-emerald-400">speed code (bits 7-4)</span>
         <span className="w-[58px] text-center text-blue-400">lane (3-2)</span>
         <span className="w-[58px] text-center">rsvd</span>
       </div>
@@ -171,7 +171,7 @@ export const BitwiseTab: React.FC = () => {
                   key={opt}
                   id={`vms-lane-btn-${opt}`}
                   onClick={() => setSignLane(opt)}
-                  className={`flex-1 py-1.5 text-xs font-semibold rounded-lg capitalize border ${signLane === opt ? "bg-orange-500 text-white border-orange-500" : "bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-muted)]"}`}
+                  className={`flex-1 py-1.5 text-xs font-semibold rounded-lg capitalize border ${signLane === opt ? "bg-emerald-500 text-white border-emerald-500" : "bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-muted)]"}`}
                 >
                   {opt}
                 </button>
@@ -188,7 +188,7 @@ export const BitwiseTab: React.FC = () => {
               maxLength={20}
               value={signText}
               onChange={(e) => setSignText(e.target.value.toUpperCase())}
-              className="px-3 py-2 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-orange-500"
+              className="px-3 py-2 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-sm focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -196,21 +196,21 @@ export const BitwiseTab: React.FC = () => {
             id="vms-dispatch-btn"
             onClick={triggerVmsTransmission}
             disabled={vmsQueueState !== "idle" && vmsQueueState !== "rendered"}
-            className="w-full py-3 mt-2 rounded-xl font-bold bg-orange-500 text-white hover:bg-orange-600 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3 mt-2 rounded-xl font-bold bg-emerald-500 text-white hover:bg-emerald-600 transition-all flex items-center justify-center gap-2"
           >
             <FontAwesomeIcon icon={faArrowRight} /> Dispatch Event
           </button>
 
           {/* Byte 0 Bit Visualizer */}
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-            <span className="text-[10px] font-bold text-orange-500 uppercase tracking-widest font-mono">Byte 0 — Bit-field Visualisation</span>
+            <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest font-mono">Byte 0 — Bit-field Visualisation</span>
             <BitField value={currentByte0} />
             <div className="flex gap-3 text-[10px] font-mono text-slate-400 flex-wrap">
-              <span><span className="text-orange-400">■</span> Speed bits: <span className="text-white">{(currentByte0 >> 4) & 0x0F}</span> (code {decoded.speedCode} = {decoded.speedMph} MPH)</span>
+              <span><span className="text-emerald-400">■</span> Speed bits: <span className="text-white">{(currentByte0 >> 4) & 0x0F}</span> (code {decoded.speedCode} = {decoded.speedMph} MPH)</span>
               <span><span className="text-blue-400">■</span> Lane bits: <span className="text-white">{(currentByte0 >> 2) & 0x03}</span> (code {decoded.laneCode} = {decoded.laneName})</span>
             </div>
             <div className="text-[10px] font-mono text-slate-500 border-t border-slate-800 pt-2">
-              Byte 0 = (<span className="text-orange-400">speedCode</span> &lt;&lt; 4) | (<span className="text-blue-400">laneCode</span> &lt;&lt; 2)
+              Byte 0 = (<span className="text-emerald-400">speedCode</span> &lt;&lt; 4) | (<span className="text-blue-400">laneCode</span> &lt;&lt; 2)
               = 0x{currentByte0.toString(16).toUpperCase().padStart(2, "0")} ({currentByte0})
             </div>
           </div>
@@ -220,22 +220,22 @@ export const BitwiseTab: React.FC = () => {
         <div className="md:col-span-7 flex flex-col gap-4">
           {/* Packed byte buffer view */}
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-white flex flex-col gap-2">
-            <span className="text-[10px] font-bold text-orange-500 uppercase tracking-widest font-mono">Serialized Binary Packet (Byte Buffer + CRC)</span>
+            <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest font-mono">Serialized Binary Packet (Byte Buffer + CRC)</span>
             <code id="vms-binary-packet" className="text-xs font-mono text-green-400 select-all p-2 rounded bg-slate-950 break-all overflow-x-auto whitespace-pre">
               [{vmsBufferHex}]
             </code>
             <div className="grid grid-cols-3 gap-2 text-[10px] font-mono text-slate-400 mt-1">
               <div>
-                <p className="text-orange-400 font-bold">Byte 0: Header</p>
+                <p className="text-emerald-400 font-bold">Byte 0: Header</p>
                 <p>Bits 7-4: Speed Code</p>
                 <p>Bits 3-2: Lane Code</p>
               </div>
               <div>
-                <p className="text-orange-400 font-bold">Byte 1: Text Length</p>
+                <p className="text-emerald-400 font-bold">Byte 1: Text Length</p>
                 <p>Bytes 2+: ASCII bytes</p>
               </div>
               <div>
-                <p className="text-orange-400 font-bold">Last: XOR Checksum</p>
+                <p className="text-emerald-400 font-bold">Last: XOR Checksum</p>
                 <p>0x{checksumByte.toString(16).toUpperCase().padStart(2, "0")} = integrity CRC</p>
               </div>
             </div>
@@ -296,7 +296,7 @@ export const BitwiseTab: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-widest">Consumer Decode — Byte 0: 0x{currentByte0.toString(16).toUpperCase().padStart(2, "0")}</span>
               </div>
               <div className="flex flex-col gap-1 text-[10px] text-slate-400">
-                <span>speed_code = (byte0 &gt;&gt; 4) &amp; 0x0F  →  <span className="text-orange-400">{(currentByte0 >> 4) & 0x0F}</span>  →  <span className="text-white">{activeSignSpeed} MPH</span></span>
+                <span>speed_code = (byte0 &gt;&gt; 4) &amp; 0x0F  →  <span className="text-emerald-400">{(currentByte0 >> 4) & 0x0F}</span>  →  <span className="text-white">{activeSignSpeed} MPH</span></span>
                 <span>lane_code  = (byte0 &gt;&gt; 2) &amp; 0x03  →  <span className="text-blue-400">{(currentByte0 >> 2) & 0x03}</span>  →  <span className="text-white">{activeSignLane.toUpperCase()}</span></span>
                 <span>checksum   = XOR(all bytes)           →  <span className="text-green-400">0x{checksumByte.toString(16).toUpperCase().padStart(2, "0")} ✓</span></span>
               </div>
@@ -309,7 +309,7 @@ export const BitwiseTab: React.FC = () => {
               <span className="text-slate-600 italic">Pipeline idle. Set variables and dispatch an event.</span>
             ) : (
               vmsLogs.map((log, lIdx) => (
-                <div key={lIdx} className={`py-0.5 ${log.startsWith("[Producer]") ? "text-orange-400" : log.startsWith("[Queue]") ? "text-blue-400" : log.startsWith("[Consumer]") ? "text-purple-400" : log.startsWith("[LED Sign]") ? "text-green-400" : ""}`}>
+                <div key={lIdx} className={`py-0.5 ${log.startsWith("[Producer]") ? "text-emerald-400" : log.startsWith("[Queue]") ? "text-blue-400" : log.startsWith("[Consumer]") ? "text-purple-400" : log.startsWith("[LED Sign]") ? "text-green-400" : ""}`}>
                   {log}
                 </div>
               ))
