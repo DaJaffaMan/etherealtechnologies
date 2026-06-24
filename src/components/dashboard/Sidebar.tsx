@@ -63,8 +63,8 @@ export const Sidebar: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <FontAwesomeIcon icon={faPhone} className="text-emerald-500 w-4 h-4" />
-            <a href="tel:07506479737" className="hover:text-emerald-500 transition-colors">
-              07506479737
+            <a href="tel:+447506479737" className="hover:text-emerald-500 transition-colors">
+              +44 7506 479 737
             </a>
           </div>
           <div className="flex items-center gap-3">
