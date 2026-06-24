@@ -95,8 +95,12 @@ const HomePage: React.FC = () => {
         : null;
 
       if (mq) {
+        console.log(`[Theme Diagnostic] State is 'system'. Chrome evaluates OS Dark Mode as: ${mq.matches}`);
         applyTheme(mq.matches);
-        const listener = (e: MediaQueryListEvent | MediaQueryList) => applyTheme(e.matches);
+        const listener = (e: MediaQueryListEvent | MediaQueryList) => {
+          console.log(`[Theme Diagnostic] OS Theme change detected. Chrome evaluates OS Dark Mode as: ${e.matches}`);
+          applyTheme(e.matches);
+        };
         
         if (mq.addEventListener) {
           mq.addEventListener("change", listener as EventListener);
@@ -109,6 +113,7 @@ const HomePage: React.FC = () => {
         applyTheme(true);
       }
     } else {
+      console.log(`[Theme Diagnostic] State is '${theme}'. Applying hardcoded theme.`);
       applyTheme(theme === "dark");
     }
 
