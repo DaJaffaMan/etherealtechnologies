@@ -60,6 +60,9 @@ const HomePage: React.FC = () => {
         root.classList.toggle("dark", isDark);
       });
       
+      // Catch all transition promises to prevent unhandled "Transition was skipped" AbortErrors
+      transition.ready.catch(() => {});
+      transition.updateCallbackDone.catch(() => {});
       transition.finished.catch(() => {
         // Ignore "Transition was skipped" DOMExceptions
       }).finally(() => {
