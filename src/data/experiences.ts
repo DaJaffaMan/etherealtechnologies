@@ -12,8 +12,8 @@ export const experiences: JobExperience[] = [
     title: 'Founder, Engineering Architect',
     company: 'Agora (Independent Startup)',
     duration: 'September 2024 - Present',
-    description: 'Founded and architected Agora, a two-sided professional cleaning services marketplace. Designed the entire system architecture, building a cross-platform Flutter application with a NestJS backend and Neo4j graph database. Implemented a comprehensive GraphQL API, integrated Stripe Connect for complex multi-party payment processing, and established Google Cloud Platform (GCP) infrastructure using Terraform. Delivered features spanning service discovery, tiered pricing, real-time availability, and automated fee processing, bringing the app from concept through to full production deployment.',
-    skills: ['Flutter', 'NestJS', 'GraphQL', 'Neo4j', 'Stripe', 'Terraform']
+    description: 'Acted as the sole creator, developer, and product manager for Agora, a two-sided professional cleaning services marketplace platform, driving the venture independently from initial concept to full production deployment. Designed the entire system architecture and executed the end-to-end development of a cross-platform Flutter mobile application backed by a NestJS API layer and a Neo4j graph database. Managed the complete product lifecycle, balancing product roadmap prioritisation with core engineering delivery to ship features spanning service discovery, tiered pricing models, real-time availability, and automated fee distribution. Handled the technical integration of a comprehensive GraphQL API, Stripe Connect for multi-party payment processing, and infrastructure provisioning on GCP via Terraform.',
+    skills: ['Flutter', 'NestJS', 'GraphQL', 'Neo4j', 'Stripe', 'Terraform', 'Firebase', 'GCP', 'Product Management', 'System Architecture', 'Solo Product Delivery']
   },
   {
     title: 'Full Stack Engineer',
