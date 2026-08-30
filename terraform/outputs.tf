@@ -1,6 +1,6 @@
-output "load_balancer_ip" {
-  description = "The global IP address of the load balancer"
-  value       = google_compute_global_address.default.address
+output "cloudflare_nameservers" {
+  description = "Cloudflare nameservers — update these at your domain registrar to activate Cloudflare DNS"
+  value       = cloudflare_zone.main.name_servers
 }
 
 output "bucket_url" {
@@ -8,7 +8,7 @@ output "bucket_url" {
   value       = google_storage_bucket.static_site.url
 }
 
-output "nameservers" {
-  description = "The nameservers for the Cloud DNS zone"
-  value       = google_dns_managed_zone.default.name_servers
+output "website_url" {
+  description = "Public website URL"
+  value       = "https://www.${var.domain_name}"
 }

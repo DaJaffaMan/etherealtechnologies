@@ -26,6 +26,9 @@ yarn-error.log*
 terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.backup
-terraform/.terraform.lock.hcl
 
 ethereal-technologies-key.json
+
+# SOPS — never commit the private key or a decrypted secrets file
+terraform/secrets.dec.yaml
+.config/sops/

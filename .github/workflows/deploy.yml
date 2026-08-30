@@ -53,14 +53,18 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./terraform
+        env:
+          TF_VAR_cloudflare_api_token: '${{ secrets.CLOUDFLARE_API_TOKEN }}'
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ./terraform
+        env:
+          TF_VAR_cloudflare_api_token: '${{ secrets.CLOUDFLARE_API_TOKEN }}'
 
       - name: Upload to GCS
         uses: google-github-actions/upload-cloud-storage@v2
         with:
           path: 'build'
-          destination: 'ethereal-technologies-corporate-site'
+          destination: 'www.etherealtechnologies.co.uk'
           parent: false # Upload contents of build/, not the build/ folder itself

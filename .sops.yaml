@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: terraform/secrets\.yaml$
+    age: age1z84s5tlum5u9gmnqytqslmqdu7l6779tag034p73henu66jrxvlqhwarws
