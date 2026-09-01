@@ -5,6 +5,44 @@ resource "cloudflare_zone" "main" {
   plan       = "free"
 }
 
+# Agora dev subdomain NS delegation — restores the record that was in Google Cloud DNS
+# Points dev.agora.etherealtechnologies.co.uk to its own Cloud DNS nameservers
+resource "cloudflare_record" "agora_dev_ns_1" {
+  zone_id = cloudflare_zone.main.id
+  name    = "dev.agora"
+  type    = "NS"
+  content = "ns-cloud-c1.googledomains.com"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "agora_dev_ns_2" {
+  zone_id = cloudflare_zone.main.id
+  name    = "dev.agora"
+  type    = "NS"
+  content = "ns-cloud-c2.googledomains.com"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "agora_dev_ns_3" {
+  zone_id = cloudflare_zone.main.id
+  name    = "dev.agora"
+  type    = "NS"
+  content = "ns-cloud-c3.googledomains.com"
+  ttl     = 300
+  proxied = false
+}
+
+resource "cloudflare_record" "agora_dev_ns_4" {
+  zone_id = cloudflare_zone.main.id
+  name    = "dev.agora"
+  type    = "NS"
+  content = "ns-cloud-c4.googledomains.com"
+  ttl     = 300
+  proxied = false
+}
+
 # SSL mode: flexible (Cloudflare → GCS is HTTP, Cloudflare → user is HTTPS)
 resource "cloudflare_zone_settings_override" "main" {
   zone_id = cloudflare_zone.main.id
