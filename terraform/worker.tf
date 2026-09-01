@@ -4,7 +4,7 @@
 # - index.html serving for SPA routes
 # - 404 fallback to index.html for React Router
 
-resource "cloudflare_worker_script" "gcs_proxy" {
+resource "cloudflare_workers_script" "gcs_proxy" {
   account_id = var.cloudflare_account_id
   name       = "ethereal-gcs-proxy"
   content    = <<-EOF
@@ -43,8 +43,8 @@ resource "cloudflare_worker_script" "gcs_proxy" {
   EOF
 }
 
-resource "cloudflare_worker_route" "gcs_proxy_route" {
+resource "cloudflare_workers_route" "gcs_proxy_route" {
   zone_id     = cloudflare_zone.main.id
   pattern     = "www.${var.domain_name}/*"
-  script_name = cloudflare_worker_script.gcs_proxy.name
+  script_name = cloudflare_workers_script.gcs_proxy.name
 }
