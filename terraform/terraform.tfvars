@@ -1,5 +1,5 @@
 domain_name           = "etherealtechnologies.co.uk"
-bucket_name           = "www.etherealtechnologies.co.uk"
+bucket_name           = "ethereal-technologies-corporate-site"
 project_id            = "ethereal-technologies"
 region                = "us-central1"
 cloudflare_account_id = "f6be228ecea3faf041779e658430c880"

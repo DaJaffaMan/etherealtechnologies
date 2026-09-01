@@ -16,11 +16,12 @@ resource "cloudflare_zone_settings_override" "main" {
   }
 }
 
-# WWW — CNAME to GCS static site endpoint (proxied = Cloudflare SSL + CDN)
+# WWW — CNAME to GCS via Cloudflare Worker (proxied = Cloudflare SSL + CDN)
+# Worker intercepts requests and rewrites them to the correct GCS bucket URL
 resource "cloudflare_record" "www" {
   zone_id = cloudflare_zone.main.id
   name    = "www"
-  value   = "c.storage.googleapis.com"
+  content = "storage.googleapis.com"
   type    = "CNAME"
   proxied = true
   ttl     = 1 # Auto TTL when proxied
@@ -30,7 +31,7 @@ resource "cloudflare_record" "www" {
 resource "cloudflare_record" "apex" {
   zone_id = cloudflare_zone.main.id
   name    = var.domain_name
-  value   = "www.${var.domain_name}"
+  content = "www.${var.domain_name}"
   type    = "CNAME"
   proxied = true
   ttl     = 1
@@ -41,7 +42,7 @@ resource "cloudflare_record" "mx_1" {
   zone_id  = cloudflare_zone.main.id
   name     = var.domain_name
   type     = "MX"
-  value    = "aspmx.l.google.com"
+  content  = "aspmx.l.google.com"
   priority = 1
   ttl      = 3600
   proxied  = false
@@ -51,7 +52,7 @@ resource "cloudflare_record" "mx_2" {
   zone_id  = cloudflare_zone.main.id
   name     = var.domain_name
   type     = "MX"
-  value    = "alt1.aspmx.l.google.com"
+  content  = "alt1.aspmx.l.google.com"
   priority = 5
   ttl      = 3600
   proxied  = false
@@ -61,7 +62,7 @@ resource "cloudflare_record" "mx_3" {
   zone_id  = cloudflare_zone.main.id
   name     = var.domain_name
   type     = "MX"
-  value    = "alt2.aspmx.l.google.com"
+  content  = "alt2.aspmx.l.google.com"
   priority = 5
   ttl      = 3600
   proxied  = false
@@ -71,7 +72,7 @@ resource "cloudflare_record" "mx_4" {
   zone_id  = cloudflare_zone.main.id
   name     = var.domain_name
   type     = "MX"
-  value    = "alt3.aspmx.l.google.com"
+  content  = "alt3.aspmx.l.google.com"
   priority = 10
   ttl      = 3600
   proxied  = false
@@ -81,7 +82,7 @@ resource "cloudflare_record" "mx_5" {
   zone_id  = cloudflare_zone.main.id
   name     = var.domain_name
   type     = "MX"
-  value    = "alt4.aspmx.l.google.com"
+  content  = "alt4.aspmx.l.google.com"
   priority = 10
   ttl      = 3600
   proxied  = false
@@ -92,7 +93,7 @@ resource "cloudflare_record" "txt_verification_1" {
   zone_id = cloudflare_zone.main.id
   name    = var.domain_name
   type    = "TXT"
-  value   = "google-site-verification=UNSHfmJjcJkjNQ8wxztqRu__l6BrZLIdXe6Vur2VSDo"
+  content = "google-site-verification=UNSHfmJjcJkjNQ8wxztqRu__l6BrZLIdXe6Vur2VSDo"
   ttl     = 300
   proxied = false
 }
@@ -101,7 +102,7 @@ resource "cloudflare_record" "txt_verification_2" {
   zone_id = cloudflare_zone.main.id
   name    = var.domain_name
   type    = "TXT"
-  value   = "google-site-verification=cRnkEJmut92yS8Du-hV2O9f5gVYPnK5DrrAQOUdFcss"
+  content = "google-site-verification=cRnkEJmut92yS8Du-hV2O9f5gVYPnK5DrrAQOUdFcss"
   ttl     = 300
   proxied = false
 }

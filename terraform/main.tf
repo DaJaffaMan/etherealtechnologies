@@ -25,9 +25,10 @@ provider "cloudflare" {
 }
 
 # GCS Bucket for Static Site
-# Must be named exactly www.<domain> for CNAME routing via c.storage.googleapis.com
+# Named independently of domain — Cloudflare Worker rewrites requests to this bucket's public URL.
+# GCS requires Search Console domain verification to use a domain-named bucket, which we avoid here.
 resource "google_storage_bucket" "static_site" {
-  name          = "www.${var.domain_name}"
+  name          = var.bucket_name
   location      = "US"
   force_destroy = true
 
