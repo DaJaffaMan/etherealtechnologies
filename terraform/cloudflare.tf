@@ -144,3 +144,24 @@ resource "cloudflare_record" "txt_verification_2" {
   ttl     = 300
   proxied = false
 }
+
+# SPF Record — Google Workspace
+resource "cloudflare_record" "spf" {
+  zone_id = cloudflare_zone.main.id
+  name    = var.domain_name
+  type    = "TXT"
+  content = "v=spf1 include:_spf.google.com ~all"
+  ttl     = 3600
+  proxied = false
+}
+
+# DMARC Record
+resource "cloudflare_record" "dmarc" {
+  zone_id = cloudflare_zone.main.id
+  name    = "_dmarc"
+  type    = "TXT"
+  content = "v=DMARC1; p=none;"
+  ttl     = 3600
+  proxied = false
+}
+
