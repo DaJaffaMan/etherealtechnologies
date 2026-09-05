@@ -1,98 +1,166 @@
 # Ethereal Technologies Corporate Site
 
-This repository contains the source code for the Ethereal Technologies corporate website, built with React and deployed to Google Cloud Platform (GCP).
+The official corporate web platform, engineering consultancy portal, and interactive technical portfolio for **Ethereal Technologies** (Bristol, UK). 
 
-## Architecture & Tools
+The site serves as a live digital sandbox showcasing production architectures, full-stack competencies, and active startup ventures. It is built with **React**, **TypeScript**, and **Tailwind CSS**, hosted on **Google Cloud Storage (GCS)**, and delivered globally via **Cloudflare** (DNS, SSL, CDN, and Edge Workers).
 
--   **Frontend**: React (Create React App)
--   **Infrastructure**: Terraform
--   **Cloud Provider**: Google Cloud Platform (GCP)
-    -   **Storage**: Google Cloud Storage (GCS) for static site hosting.
-    -   **Networking**: Global HTTPS Load Balancer with Google-managed SSL certificates.
--   **CI/CD**: GitHub Actions for automated building and deployment.
+---
+
+## What the Site Does
+
+The platform is designed to provide prospective clients, partners, and engineering teams with transparent, interactive demonstrations of high-impact software engineering capabilities:
+
+* **Venture Showcase**: Spotlights active production applications, prominently featuring the [Agora Mobile Platform](https://agora.cleaning) (a two-sided service marketplace on Google Play) built with Flutter, NestJS, Neo4j, and Stripe Connect.
+* **Interactive Developer Lab (`DevLab`)**: An in-browser engineering playground featuring real-time client-side demonstrations:
+  * **Cryptography & Hashing**: Web Crypto API demonstrations of SHA-256 generation, salt injection, avalanche effect analysis, and comparative benchmarking of key derivation functions (PBKDF2, Bcrypt, Scrypt, Argon2).
+  * **Database Architecture Simulator (OLTP vs OLAP)**: Live client-side simulation processing 50,000+ IoT records to contrast row-oriented (relational) scan overhead against columnar (star-schema) analytical aggregations.
+  * **Cloud Architecture Simulator**: An interactive topological blueprint of Agora's distributed cloud stack (Flutter client &rarr; Fastify / NestJS / Apollo GraphQL Gateway &rarr; Firebase Auth Guard &rarr; Neo4j Graph DB, Companies House API, and Google Maps Distance Matrix).
+  * **Bitwise Roadside Protocols**: An interactive byte packet encoder/decoder demonstrating bitwise shift message parsing, reverse-engineered from roadside variable message signs (VMS).
+  * **Automated Unit Test Runner**: A browser-embedded test runner executing test suites for the algorithmic lab modules with live execution progress and console output.
+* **Interactive Skills & Experience Matrix**: A dynamic multi-category filtering interface linking technical proficiencies directly to verified enterprise and startup roles (Agora, Costain Group PLC, Homelink, Octopus Energy, Sero, Superdry, BJSS, etc.).
+* **Modern UI/UX & Native View Transitions**: Built with a responsive glassmorphic design system, dynamic scroll progress indicators, and fluid theme switching (Dark, Light, System) powered by the native CSS **View Transitions API** (`document.startViewTransition`) with reduced-motion support.
+
+---
+
+## Architecture & Infrastructure
+
+```
+                                  +---------------------------------------+
+                                  |            Client Browser             |
+                                  +---------------------------------------+
+                                                      |
+                                                      v  (HTTPS / TLS 1.2+)
+                                  +---------------------------------------+
+                                  |            Cloudflare Edge            |
+                                  |  - DNS (Apex & Subdomains)            |
+                                  |  - SSL Termination (Flexible mode)    |
+                                  |  - Global CDN Caching                 |
+                                  +---------------------------------------+
+                                                      |
+                                                      v
+                                  +---------------------------------------+
+                                  |  Cloudflare Worker: ethereal-gcs-proxy|
+                                  |  - Apex -> www 301 Redirect           |
+                                  |  - SPA URL Rewrites (Client Router)   |
+                                  |  - Fallback /index.html on 404        |
+                                  +---------------------------------------+
+                                                      |
+                                                      v  (Public GCS URL)
++-----------------------------------------------------------------------------------------+
+| Google Cloud Platform (GCP)                                                            |
+|                                                                                         |
+|   +---------------------------------------------+   +---------------------------------+ |
+|   |  GCS Bucket: ethereal-technologies-         |   |  GCS Bucket: ethereal-          | |
+|   |  corporate-site                             |   |  technologies-terraform-state   | |
+|   |  (Static build artifacts: HTML, CSS, JS)    |   |  (Remote Terraform State)       | |
+|   +---------------------------------------------+   +---------------------------------+ |
++-----------------------------------------------------------------------------------------+
+```
+
+* **Frontend**: React 18 (TypeScript), Tailwind CSS, FontAwesome Icons.
+* **Edge / CDN & DNS**: Cloudflare DNS Zone with automated HTTPS enforcement and CDN caching.
+* **Edge Compute (Worker)**: A lightweight Cloudflare Worker script (`ethereal-gcs-proxy`) intercepts incoming requests to proxy files directly from the origin GCS bucket and seamlessly handle single-page application (SPA) client-side routes.
+* **Static Origin Storage**: Google Cloud Storage (`ethereal-technologies-corporate-site`) configured for public static web hosting.
+* **Infrastructure as Code (IaC)**: Terraform (v1.5.7+) managing GCP storage resources, Cloudflare DNS records, Cloudflare Zone settings, and Cloudflare Worker scripts/routes.
+* **Remote State**: Stored remotely in a dedicated versioned GCS bucket (`ethereal-technologies-terraform-state`).
+* **CI/CD**: Automated build, infrastructure provisioning, and deployment via GitHub Actions.
+
+---
 
 ## Prerequisites
 
--   Node.js (v18+)
--   Terraform (v1.5.7+)
--   GCP Account & Project (`ethereal-technologies`)
+Ensure you have the following installed locally:
+
+* **Node.js**: v18+ (v22 recommended, managed via `.tool-versions`)
+* **pnpm**: v9+ (`pnpm 9.1.0` pinned in `.tool-versions`)
+* **Terraform**: v1.5.7+
+* **Google Cloud SDK (`gcloud`)**: For local GCP administrative actions
+* **SOPS & age**: (Optional) For encrypting/decrypting local sensitive Terraform variable files
+
+---
 
 ## Local Development
 
-1.  Install dependencies:
-    ```bash
-    npm install
-    ```
-2.  Start the development server:
-    ```bash
-    npm start
-    ```
+1. **Install dependencies**:
+   ```bash
+   pnpm install --frozen-lockfile
+   ```
 
-## Infrastructure (Terraform)
+2. **Start the local development server**:
+   ```bash
+   pnpm start
+   ```
+   The site will be available at [http://localhost:3000](http://localhost:3000).
 
-The infrastructure is managed via Terraform in the `terraform/` directory.
+3. **Run unit tests**:
+   ```bash
+   pnpm test
+   ```
 
-### State Management
-Terraform state is stored **remotely** in a Google Cloud Storage bucket (`ethereal-technologies-terraform-state`). This allows GitHub Actions to manage the infrastructure safely.
+4. **Create a production build**:
+   ```bash
+   pnpm run build
+   ```
 
-### Configuration
-Variables are defined in `terraform/variables.tf`.
--   `domain_name`: `etherealtechnologies.co.uk`
--   `bucket_name`: `ethereal-technologies-corporate-site`
--   `project_id`: `ethereal-technologies`
+---
 
-### Applying Changes
+## Infrastructure Management (Terraform)
+
+All infrastructure is defined as code in the `terraform/` directory.
+
+### Key Files
+* `main.tf`: Configures the GCP and Cloudflare providers, GCS static site bucket, and public IAM read permissions.
+* `cloudflare.tf`: Manages the Cloudflare DNS zone, Apex/WWW CNAME records, Google Workspace mail routing (MX, SPF, DMARC), Google site verification TXT records, and NS record delegation for the `dev.agora` subdomain.
+* `worker.tf`: Implements and binds the `ethereal-gcs-proxy` Cloudflare Worker for request rewriting and apex-to-www redirection.
+* `state_bucket.tf`: Provisions the versioned GCS bucket used for remote state storage.
+* `variables.tf`: Defines required input variables (`domain_name`, `bucket_name`, `project_id`, `region`, `cloudflare_account_id`, `cloudflare_api_token`).
+* `outputs.tf`: Exports `cloudflare_nameservers`, `bucket_url`, and `website_url`.
+
+### Local Execution
+To inspect or plan infrastructure changes locally:
+
 ```bash
 cd terraform
 terraform init
-terraform plan
-terraform apply
+terraform plan -var="cloudflare_api_token=<YOUR_CLOUDFLARE_TOKEN>"
 ```
+
+> [!NOTE]
+> Sensitive configuration variables can be stored encrypted with SOPS and age in `terraform/secrets.yaml`. Never commit decrypted secret files (`secrets.dec.yaml`).
+
+---
 
 ## Deployment (CI/CD)
 
-Deployments are automated using GitHub Actions on push to the `main` branch.
+Deployments are fully automated via GitHub Actions on every push to the `main` branch ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
 
-### Secrets Configuration
+### Deployment Pipeline Workflow:
+1. **Build Step**: Checks out code, sets up Node.js with `pnpm` caching, installs dependencies (`pnpm install --frozen-lockfile`), and compiles the production bundle (`pnpm run build`).
+2. **GCP Authentication**: Authenticates against Google Cloud using the Service Account key stored in GitHub Secrets.
+3. **Terraform Apply**: Runs `terraform init`, `terraform plan`, and `terraform apply -auto-approve` using `TF_VAR_cloudflare_api_token` to synchronize DNS, Worker, and GCS infrastructure.
+4. **GCS Artifact Upload**: Syncs the contents of the `build/` directory directly into the static GCS bucket (`ethereal-technologies-corporate-site`).
 
-The workflow requires a Service Account Key to authenticate with GCP. This key is stored as a **Base64 encoded** GitHub Secret.
+### Required GitHub Secrets
 
-**Secret Name**: `GOOGLE_SERVICES_JSON`
+To enable the deployment workflow, ensure the following repository secrets are configured in GitHub Settings (&rarr; Secrets and variables &rarr; Actions):
 
-#### Generating the Secret
-We have provided a helper script to generate the correct Service Account Key for the project.
+| Secret Name | Description | Source / Format |
+|---|---|---|
+| `GOOGLE_SERVICES_JSON` | GCP Service Account credentials JSON with Owner or Storage Admin / Viewer permissions | Generated via `./setup_gcp_auth.sh` or GCP Console |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with `Zone:Edit`, `DNS:Edit`, and `Workers Scripts:Edit` permissions | Cloudflare Dashboard &rarr; API Tokens |
 
-1.  Run the setup script:
-    ```bash
-    ./setup_gcp_auth.sh
-    ```
-2.  Copy the **Raw JSON** output from the terminal.
-3.  Paste it directly into the GitHub Secret `GOOGLE_SERVICES_JSON`.
-
-*This command copies the output directly to your clipboard, ready to be pasted into GitHub Secrets.*
-
-## DNS Configuration (Migration to Cloud DNS)
-
-We have migrated DNS management to **Google Cloud DNS**. This allows for better integration with GCP services and easier management of subdomains.
-
-### 1. Apply Terraform Changes
-Run the **Terraform Apply** workflow in GitHub Actions. This will create the Cloud DNS Managed Zone and replicate your existing records.
-
-### 2. Retrieve Nameservers
-After the Terraform apply completes, check the **Run Terraform Apply** step logs in GitHub Actions. You will see an output named `nameservers` listing the assigned Google nameservers (e.g., `ns-cloud-a1.googledomains.com`).
-
-Alternatively, you can retrieve them locally:
+#### Generating GCP Credentials
+A convenience script is included to generate a dedicated service account key:
 ```bash
-cd terraform
-terraform output nameservers
+./setup_gcp_auth.sh
 ```
+Copy the raw JSON output and add it as the `GOOGLE_SERVICES_JSON` secret in GitHub.
 
-### 3. Update Nameservers in Squarespace
-1.  Log in to your **Squarespace** account.
-2.  Navigate to **Domains** -> **DNS Settings**.
-3.  Select **Use Custom Nameservers**.
-4.  Enter the nameservers provided by the Terraform output.
-5.  Save your changes.
+---
 
-> [!IMPORTANT]
-> DNS propagation can take up to 48 hours. During this time, traffic will gradually shift to the new nameservers. Since we replicated existing records, there should be no downtime.
+## Domain & DNS Routing
+
+* **Primary DNS**: Managed completely via Cloudflare DNS. Nameservers output by Terraform (`terraform output cloudflare_nameservers`) are configured at the domain registrar.
+* **Apex Redirection**: The apex domain (`etherealtechnologies.co.uk`) redirects via HTTP 301 to `https://www.etherealtechnologies.co.uk` at the Cloudflare Worker layer.
+* **Email Configuration**: Fully configured with Google Workspace mail exchange (`aspmx.l.google.com`), SPF validation (`v=spf1 include:_spf.google.com ~all`), and DMARC enforcement (`v=DMARC1; p=none;`).
+* **Subdomain Delegation**: `dev.agora.etherealtechnologies.co.uk` NS records are delegated directly to dedicated Google Cloud DNS servers for the Agora environment.
