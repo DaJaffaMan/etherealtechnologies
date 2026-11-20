@@ -1,10 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <defs>
-    <linearGradient id="etGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f97316" />
-      <stop offset="100%" stop-color="#ea580c" />
+    <linearGradient id="etEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
     </linearGradient>
+    <radialGradient id="etGlow" cx="30%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#0b1120" stop-opacity="0" />
+    </radialGradient>
   </defs>
-  <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#etGradient)" />
-  <text x="50" y="65" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="46" fill="#ffffff" text-anchor="middle" letter-spacing="-1">ET</text>
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4" stroke-width="3" />
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="url(#etGlow)" />
+  <!-- Geometric E -->
+  <path
+    d="M22 28 H49 V37 H31.5 V45.5 H45.5 V54 H31.5 V63 H49 V72 H22 Z"
+    fill="url(#etEmerald)"
+  />
+  <!-- Geometric T -->
+  <path
+    d="M52 28 H79 V37 H70.25 V72 H60.75 V37 H52 Z"
+    fill="#f8fafc"
+  />
 </svg>

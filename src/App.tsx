@@ -1,11 +1,17 @@
-import React from "react";
-import HomePage from "./views/home";
+import "./styles/app.css";
+import type { Component } from "solid-js";
+import { SiteLayout } from "./components/SiteLayout";
+import { AppRouter } from "./router";
 
-const App: React.FC = () => {
+export interface AppProps {
+  readonly url?: string;
+}
+
+const App: Component<AppProps> = (props) => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <HomePage />
-    </div>
+    <AppRouter url={props.url}>
+      {(sectionProps) => <SiteLayout>{sectionProps.children}</SiteLayout>}
+    </AppRouter>
   );
 };
 
