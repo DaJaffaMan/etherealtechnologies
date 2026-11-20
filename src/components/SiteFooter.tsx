@@ -9,7 +9,8 @@ export const SiteFooter: Component = () => {
       <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div class="flex flex-col gap-1">
           <p class="m-0 font-medium text-[var(--text-primary)]">
-            © {SITE.copyrightYear} {SITE.legalName} · {SITE.location}
+            © {SITE.copyrightYear} {SITE.legalName} · Company No. {SITE.companyNumber} · VAT{" "}
+            {SITE.vatNumber} · {SITE.location}
           </p>
           <p class="m-0">
             Principal-led engineering consultancy &amp; creator of{" "}

@@ -75,7 +75,7 @@ export const AGORA: AgoraData = {
     "We don't just advise on software architecture — we ship and operate our own. Agora is live on web and Google Play with independent cleaners onboarded, backed by Stripe Escrow Protection, a 48h Spotless Guarantee, Neo4j graph matching, and multi-party Stripe Connect payouts.",
   websiteUrl: "https://agora.cleaning",
   playStoreUrl: "https://play.google.com/store/apps/details?id=cleaning.agora&hl=en",
-  iconPath: "/agora_icon.png",
+  iconPath: "/agora-icon.webp",
   statusBadge: "Live in Production",
   highlights: [
     {

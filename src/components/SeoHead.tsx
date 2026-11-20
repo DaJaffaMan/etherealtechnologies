@@ -7,6 +7,7 @@ export interface SeoHeadProps {
   readonly description: string;
   readonly path: string;
   readonly noindex?: boolean;
+  readonly ogImageAlt?: string;
   readonly jsonLd?: JsonLdDocument;
 }
 
@@ -15,6 +16,7 @@ export const SeoHead: Component<SeoHeadProps> = (props) => {
     const cleanPath = props.path === "/" ? "/" : props.path.replace(/\/+$/, "");
     return `${SITE.baseUrl}${cleanPath}`;
   });
+  const imageAlt = createMemo(() => props.ogImageAlt ?? SITE.ogImageAlt);
 
   return (
     <Head>
@@ -27,12 +29,14 @@ export const SeoHead: Component<SeoHeadProps> = (props) => {
       <Meta property="og:type" content="website" />
       <Meta property="og:url" content={canonicalUrl()} />
       <Meta property="og:image" content={SITE.ogImage} />
+      <Meta property="og:image:alt" content={imageAlt()} />
       <Meta property="og:image:width" content="1200" />
       <Meta property="og:image:height" content="630" />
       <Meta name="twitter:card" content="summary_large_image" />
       <Meta name="twitter:title" content={props.title} />
       <Meta name="twitter:description" content={props.description} />
       <Meta name="twitter:image" content={SITE.ogImage} />
+      <Meta name="twitter:image:alt" content={imageAlt()} />
       <Show when={props.noindex}>
         <Meta name="robots" content="noindex, nofollow" />
       </Show>

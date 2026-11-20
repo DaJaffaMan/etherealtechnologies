@@ -1,7 +1,7 @@
 import { createSignal, For, onSettled, Show, type Component } from "solid-js";
 import { isServer } from "@solidjs/web";
 import { useInRouter, useSearchParams } from "@solidjs/router";
-import { AVAILABILITY, SITE } from "../data/site";
+import { AVAILABILITY, buildContactGraph, SITE } from "../data/site";
 import {
   buildMailtoUrl,
   ENGAGEMENT_TYPES,
@@ -90,6 +90,7 @@ export const ContactPage: Component = () => {
         title={`Contact & Consultancy Inquiries | ${SITE.name}`}
         description="Start a consultancy engagement, legacy modernisation project, or Agora partnership conversation with Ethereal Technologies in Bristol, UK."
         path="/contact"
+        jsonLd={buildContactGraph()}
       />
 
       <section class="pt-14 pb-16 px-5">

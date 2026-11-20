@@ -8,35 +8,24 @@ export interface IconProps {
 export const EtherealMark: Component<IconProps> = (props) => (
   <svg
     class={props.class ?? "w-9 h-9"}
-    viewBox="0 0 100 100"
+    viewBox="0 0 64 64"
     fill="none"
     aria-hidden="true"
   >
     <defs>
-      <linearGradient id="ethereal-mark-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#34d399" />
-        <stop offset="100%" stop-color="#059669" />
+      <linearGradient id="ethereal-crown-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" class="brand-crown-start" />
+        <stop offset="100%" class="brand-crown-end" />
+      </linearGradient>
+      <linearGradient id="ethereal-facet-grad" x1="10%" y1="10%" x2="90%" y2="90%">
+        <stop offset="0%" class="brand-facet-start" />
+        <stop offset="100%" class="brand-facet-end" />
       </linearGradient>
     </defs>
-    <rect
-      x="2"
-      y="2"
-      width="96"
-      height="96"
-      rx="22"
-      fill="#0b1120"
-      stroke="#10b981"
-      stroke-opacity="0.45"
-      stroke-width="3"
-    />
-    <path
-      d="M22 28 H49 V37 H31.5 V45.5 H45.5 V54 H31.5 V63 H49 V72 H22 Z"
-      fill="url(#ethereal-mark-gradient)"
-    />
-    <path
-      d="M52 28 H79 V37 H70.25 V72 H60.75 V37 H52 Z"
-      fill="#f8fafc"
-    />
+    <path d="M 32 8 L 51 19 L 32 30 L 13 19 Z" fill="url(#ethereal-crown-grad)" />
+    <path d="M 11 22.5 L 29.5 33.2 V 41.5 L 11 30.8 Z" fill="url(#ethereal-facet-grad)" />
+    <path d="M 11 36.2 L 29.5 46.9 V 55.2 L 11 44.5 Z" fill="url(#ethereal-facet-grad)" />
+    <path d="M 34.5 33.2 L 53 22.5 V 44.5 L 34.5 55.2 Z" fill="var(--text-primary)" />
   </svg>
 );
 

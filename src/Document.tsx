@@ -13,7 +13,9 @@ const Document: ParentComponent = (props) => {
         <meta name="color-scheme" content="light dark" />
         <script>{FOUC_SCRIPT}</script>
         <meta name="theme-color" content="#0b1120" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="48x48" />
+        <link rel="icon" href="/logo.svg?v=2" type="image/svg+xml" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />

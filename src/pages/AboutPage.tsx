@@ -1,5 +1,5 @@
 import { For, type Component } from "solid-js";
-import { buildPersonSchema, SITE } from "../data/site";
+import { buildAboutGraph, SITE } from "../data/site";
 import { CERTIFICATIONS, LANGUAGES } from "../data/work";
 import { ArrowRightIcon, AwardIcon, GithubIcon, LinkedinIcon, MapPinIcon } from "../components/Icons";
 import { SeoHead } from "../components/SeoHead";
@@ -31,7 +31,7 @@ export const AboutPage: Component = () => {
         title={`About & Principal Profile | ${SITE.name}`}
         description="Meet Jack Jefferies, founder of Ethereal Technologies — a Bristol-based principal software consultancy and product studio."
         path="/about"
-        jsonLd={buildPersonSchema()}
+        jsonLd={buildAboutGraph()}
       />
 
       <section class="pt-14 pb-16 px-5">
@@ -85,10 +85,11 @@ export const AboutPage: Component = () => {
               <div class="studio-card rounded-2xl p-6">
                 <div class="flex items-center gap-4">
                   <img
-                    src="/profile.jpeg"
+                    src="/profile.webp"
                     alt="Jack Jefferies"
                     width="80"
                     height="80"
+                    decoding="async"
                     class="w-20 h-20 rounded-2xl object-cover border border-[var(--border-accent)] shrink-0"
                   />
                   <div>
@@ -150,6 +151,12 @@ export const AboutPage: Component = () => {
               <div class="studio-card rounded-2xl p-5">
                 <div class="text-xs font-mono text-[var(--accent-text)] mb-3">STUDIO DETAILS</div>
                 <dl class="space-y-2 text-xs sm:text-sm m-0">
+                  <div>
+                    <dt class="inline font-semibold text-[var(--text-primary)]">Company: </dt>
+                    <dd class="inline text-[var(--text-secondary)] m-0">
+                      {SITE.legalName} (No. {SITE.companyNumber} · VAT {SITE.vatNumber})
+                    </dd>
+                  </div>
                   <div>
                     <dt class="inline font-semibold text-[var(--text-primary)]">Base: </dt>
                     <dd class="inline text-[var(--text-secondary)] m-0">{SITE.region}</dd>
