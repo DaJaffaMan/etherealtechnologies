@@ -30,6 +30,7 @@
 - **What it is**: Two-sided UK cleaning services marketplace built and operated end-to-end by Ethereal Technologies Ltd.
 - **Key Mechanics**: Stripe Connect T-72h pre-auth escrow protection, 48h Spotless Guarantee with timestamped room-by-room photo proof, £0 per-lead fees & flat 10% Agora commission (~88% net cleaner take-home + 100% tips), and end-to-end encrypted time-windowed lockbox PINs.
 - **Stack**: Flutter client, Firebase Auth (RBAC JWT claims), Fastify-backed NestJS Apollo GraphQL API, Neo4j graph matching database, Stripe Connect, and Google Cloud (Cloud Run, GCS) via Terraform.
+- **Agora Machine-Readable Specs**: [Agora LLMs Overview](https://agora.cleaning/llms.txt) · [Agora Full Knowledge Base](https://agora.cleaning/llms-full.txt) · [Agora MCP Server Metadata](https://api.agora.cleaning/.well-known/mcp.json)
 
 ## Selected Client Highlights
 
@@ -46,3 +47,4 @@
 - **GitHub**: https://github.com/DaJaffaMan
 - **LinkedIn**: https://www.linkedin.com/in/jack-jefferies
 - **Product**: https://agora.cleaning
+- **Companies House**: https://find-and-update.company-information.service.gov.uk/company/11274880

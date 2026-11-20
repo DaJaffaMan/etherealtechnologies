@@ -1,7 +1,7 @@
 # Ethereal Technologies — Complete Studio & Engineering Reference
 
 Canonical URL: https://www.etherealtechnologies.co.uk/
-Legal Entity: Ethereal Technologies Ltd (Registered in England & Wales · UK Company No. 11274880 · VAT Reg No. GB291330321)
+Legal Entity: Ethereal Technologies Ltd (Registered in England & Wales · UK Company No. 11274880 · VAT Reg No. GB291330321 · https://find-and-update.company-information.service.gov.uk/company/11274880)
 Base & Coverage: Bristol, United Kingdom — Remote UK & International B2B Software Consultancy
 Founder & Principal Consultant: Jack Jefferies (https://www.etherealtechnologies.co.uk/about)
 Contact: jack@etherealtechnologies.co.uk · +44 7506 479 737 · https://github.com/DaJaffaMan · https://www.linkedin.com/in/jack-jefferies
@@ -48,6 +48,7 @@ Ethereal Technologies is a principal-led software consultancy and product studio
 ## 3. Flagship Product: Agora (https://agora.cleaning)
 
 - **Distribution**: Live in production across web (https://agora.cleaning) and Google Play (https://play.google.com/store/apps/details?id=cleaning.agora&hl=en).
+- **Machine-Readable Endpoints**: https://agora.cleaning/llms.txt · https://agora.cleaning/llms-full.txt · https://api.agora.cleaning/.well-known/mcp.json
 - **Supply Network**: Independent local UK cleaners with verified profiles, schedules, and £0 per-lead fees.
 - **Commercial Trust Mechanics**:
   - **Stripe Escrow Protection (Charged After Clean)**: Pre-authorised at booking and held safely in Stripe Connect escrow until verified completion.

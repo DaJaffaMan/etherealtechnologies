@@ -17,6 +17,7 @@ const Document: ParentComponent = (props) => {
         <link rel="icon" href="/logo.svg?v=2" type="image/svg+xml" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" type="text/plain" title="LLMs Overview" href="/llms.txt" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
         <link

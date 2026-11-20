@@ -25,6 +25,7 @@ export interface SiteConfig {
   readonly phoneHref: string;
   readonly githubUrl: string;
   readonly linkedinUrl: string;
+  readonly companiesHouseUrl: string;
   readonly ogImage: string;
   readonly ogImageAlt: string;
   readonly copyrightYear: number;
@@ -49,6 +50,7 @@ export const SITE: SiteConfig = {
   phoneHref: "tel:+447506479737",
   githubUrl: "https://github.com/DaJaffaMan",
   linkedinUrl: "https://www.linkedin.com/in/jack-jefferies",
+  companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/11274880",
   ogImage: "https://www.etherealtechnologies.co.uk/og-preview.jpg?v=5",
   ogImageAlt:
     "Ethereal Technologies — Principal-Led Software Consultancy & Product Studio in Bristol, UK, creators of Agora",
@@ -60,6 +62,7 @@ export const SCHEMA_IDS = {
   website: `${SITE.baseUrl}/#website`,
   founder: `${SITE.baseUrl}/#founder`,
   agora: "https://agora.cleaning/#software",
+  agoraOrg: "https://agora.cleaning/#organization",
 } as const;
 
 export interface AvailabilityInfo {
@@ -174,7 +177,34 @@ export function buildHomeGraph(faqs: readonly FaqItem[]): JsonLdDocument {
           addressLocality: "Bristol",
           addressCountry: "GB",
         },
-        sameAs: [SITE.githubUrl, SITE.linkedinUrl, "https://agora.cleaning"],
+        sameAs: [SITE.githubUrl, SITE.linkedinUrl, SITE.companiesHouseUrl],
+        subOrganization: {
+          "@type": "Organization",
+          "@id": SCHEMA_IDS.agoraOrg,
+          name: "Agora Cleaning",
+          url: "https://agora.cleaning",
+        },
+        brand: {
+          "@type": "Brand",
+          name: "Agora",
+          url: "https://agora.cleaning",
+          logo: `${SITE.baseUrl}/agora-icon.webp`,
+        },
+        owns: { "@id": SCHEMA_IDS.agora },
+        subjectOf: [
+          {
+            "@type": "DigitalDocument",
+            name: "Ethereal Technologies AI & LLM Overview (llms.txt)",
+            url: `${SITE.baseUrl}/llms.txt`,
+            encodingFormat: "text/markdown",
+          },
+          {
+            "@type": "DigitalDocument",
+            name: "Ethereal Technologies Complete Engineering Reference (llms-full.txt)",
+            url: `${SITE.baseUrl}/llms-full.txt`,
+            encodingFormat: "text/markdown",
+          },
+        ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Software Consultancy & Product Delivery Services",
@@ -237,6 +267,7 @@ export function buildAgoraGraph(faqs: readonly FaqItem[]): JsonLdDocument {
         },
         creator: { "@id": SCHEMA_IDS.organization },
         publisher: { "@id": SCHEMA_IDS.organization },
+        provider: { "@id": SCHEMA_IDS.agoraOrg },
       },
       buildFaqNode("/agora", faqs),
     ],

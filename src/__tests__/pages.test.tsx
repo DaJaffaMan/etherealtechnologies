@@ -181,6 +181,13 @@ describe("Ethereal Technologies pages & routing", () => {
     expect(home["@graph"]).toHaveLength(4);
     const homeOrg = home["@graph"]?.find((n) => n["@id"] === SCHEMA_IDS.organization);
     expect(homeOrg?.vatID).toBe("GB291330321");
+    expect(homeOrg?.sameAs).toContain(SITE.companiesHouseUrl);
+    expect(homeOrg?.subOrganization).toMatchObject({
+      "@id": SCHEMA_IDS.agoraOrg,
+      url: "https://agora.cleaning",
+    });
+    expect(JSON.stringify(homeOrg?.subjectOf)).toContain(`${SITE.baseUrl}/llms.txt`);
+    expect(JSON.stringify(homeOrg?.subjectOf)).toContain(`${SITE.baseUrl}/llms-full.txt`);
     expect(JSON.stringify(home)).toContain("11274880");
     const homeFaq = home["@graph"]?.find((n) => n["@type"] === "FAQPage");
     expect(homeFaq?.mainEntity).toHaveLength(HOME_FAQS.length);
@@ -189,6 +196,7 @@ describe("Ethereal Technologies pages & routing", () => {
     expect(agora["@graph"]).toHaveLength(3);
     const agoraApp = agora["@graph"]?.find((n) => n["@id"] === SCHEMA_IDS.agora);
     expect(agoraApp?.creator).toEqual({ "@id": SCHEMA_IDS.organization });
+    expect(agoraApp?.provider).toEqual({ "@id": SCHEMA_IDS.agoraOrg });
     const agoraFaq = agora["@graph"]?.find((n) => n["@type"] === "FAQPage");
     expect(agoraFaq?.mainEntity).toHaveLength(AGORA_FAQS.length);
 
