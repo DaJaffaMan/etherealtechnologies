@@ -2,14 +2,19 @@
 # Handles:
 # - Redirects root/apex (etherealtechnologies.co.uk) -> https://www.etherealtechnologies.co.uk
 # - Path passthrough for static assets (images, css, js)
-# - index.html serving for root and SPA routes (React Router)
-# - 404 fallback to index.html for client-side routing
+# - Prerendered SSG route resolution (/agora -> /agora/index.html)
+# - 404.html response with HTTP 404 status for unknown routes
 
 resource "cloudflare_workers_script" "gcs_proxy" {
   account_id = var.cloudflare_account_id
   name       = "ethereal-gcs-proxy"
   content    = <<-EOF
     const BUCKET_BASE = "https://storage.googleapis.com/${var.bucket_name}";
+
+    function isStaticAsset(pathname) {
+      const lastSegment = pathname.split("/").pop() || "";
+      return lastSegment.includes(".");
+    }
 
     async function handleRequest(request) {
       const url = new URL(request.url);
@@ -21,24 +26,34 @@ resource "cloudflare_workers_script" "gcs_proxy" {
         return Response.redirect(url.toString(), 301);
       }
 
-      let path = url.pathname;
+      const rawPath = url.pathname;
+      const assetRequest = isStaticAsset(rawPath);
+      let path = rawPath;
 
-      // Serve index.html for root and SPA routes (no extension = likely a route)
+      // Resolve root and extensionless SSG routes to their prerendered index.html
       if (path === "/" || path === "") {
         path = "/index.html";
-      } else if (!path.includes(".")) {
-        // SPA fallback — serve index.html for React Router paths
-        path = "/index.html";
+      } else if (!assetRequest) {
+        path = path.endsWith("/") ? path + "index.html" : path + "/index.html";
       }
 
       const gcsUrl = BUCKET_BASE + path;
       const response = await fetch(gcsUrl);
 
-      // If GCS returns 404, serve index.html (React Router catch-all)
       if (response.status === 404) {
+        if (assetRequest) {
+          return response;
+        }
+        const notFoundResponse = await fetch(BUCKET_BASE + "/404.html");
+        if (notFoundResponse.ok) {
+          return new Response(notFoundResponse.body, {
+            status: 404,
+            headers: notFoundResponse.headers,
+          });
+        }
         const indexResponse = await fetch(BUCKET_BASE + "/index.html");
         return new Response(indexResponse.body, {
-          status: 200,
+          status: 404,
           headers: indexResponse.headers,
         });
       }

@@ -25,16 +25,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Run tests
+        run: pnpm test
+
       - name: Build
         run: pnpm run build
-        env:
-          CI: false # Prevent treating warnings as errors
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
