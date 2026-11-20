@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <style>
+    .fh-crown-1 { stop-color: #6ee7b7; }
+    .fh-crown-2 { stop-color: #2dd4bf; }
+    .fh-facet-1 { stop-color: #34d399; }
+    .fh-facet-2 { stop-color: #10b981; }
+    .fh-facet-3 { stop-color: #14b8a6; }
+    .fh-mono { fill: #f8fafc; }
+    @media (prefers-color-scheme: light) {
+      .fh-crown-1 { stop-color: #10b981; }
+      .fh-crown-2 { stop-color: #0d9488; }
+      .fh-facet-1 { stop-color: #059669; }
+      .fh-facet-2 { stop-color: #059669; }
+      .fh-facet-3 { stop-color: #0d9488; }
+      .fh-mono { fill: #0f172a; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="fh-crown" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" class="fh-crown-1" />
+      <stop offset="100%" class="fh-crown-2" />
+    </linearGradient>
+    <linearGradient id="fh-facet" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" class="fh-facet-1" />
+      <stop offset="55%" class="fh-facet-2" />
+      <stop offset="100%" class="fh-facet-3" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(32 32) scale(1.25) translate(-32 -31.6)">
+    <path d="M 32 8 L 51 19 L 32 30 L 13 19 Z" fill="url(#fh-crown)" />
+    <path d="M 11 22.5 L 29.5 33.2 V 41.5 L 11 30.8 Z" fill="url(#fh-facet)" />
+    <path d="M 11 36.2 L 29.5 46.9 V 55.2 L 11 44.5 Z" fill="url(#fh-facet)" />
+    <path d="M 34.5 33.2 L 53 22.5 V 44.5 L 34.5 55.2 Z" class="fh-mono" />
+  </g>
+</svg>

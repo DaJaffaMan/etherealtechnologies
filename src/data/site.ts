@@ -164,7 +164,7 @@ export function buildHomeGraph(faqs: readonly FaqItem[]): JsonLdDocument {
         url: `${SITE.baseUrl}/`,
         logo: {
           "@type": "ImageObject",
-          url: `${SITE.baseUrl}/logo.svg?v=2`,
+          url: `${SITE.baseUrl}/logo.svg?v=3`,
         },
         image: SITE.ogImage,
         email: SITE.email,

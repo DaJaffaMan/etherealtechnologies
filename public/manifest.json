@@ -19,7 +19,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "/logo.svg?v=2",
+      "src": "/favicon.svg",
       "type": "image/svg+xml",
       "sizes": "any"
     }
