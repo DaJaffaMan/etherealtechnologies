@@ -50,6 +50,24 @@ jobs:
         with:
           terraform_version: 1.5.7
 
+      - name: Install SOPS
+        run: |
+          curl -fsSL "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64" -o /usr/local/bin/sops
+          echo "775f1384d55decfad228e7196a3f683791914f92a473f78fc47700531c29dfef  /usr/local/bin/sops" | sha256sum -c -
+          chmod +x /usr/local/bin/sops
+
+      - name: Decrypt Terraform Secrets (SOPS)
+        env:
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+        run: |
+          CF_ACCOUNT_ID="$(sops --extract '["cloudflare_account_id"]' -d terraform/secrets.yaml)"
+          if [ -z "${CF_ACCOUNT_ID}" ]; then
+            echo "Error: cloudflare_account_id missing from terraform/secrets.yaml" >&2
+            exit 1
+          fi
+          echo "::add-mask::${CF_ACCOUNT_ID}"
+          echo "TF_VAR_cloudflare_account_id=${CF_ACCOUNT_ID}" >> "$GITHUB_ENV"
+
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
