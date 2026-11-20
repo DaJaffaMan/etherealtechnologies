@@ -94,10 +94,12 @@ All infrastructure is defined in `terraform/`:
 * `worker.tf`: `ethereal-gcs-proxy` Cloudflare Worker handling apex-to-www 301 redirect, SSG route `/index.html` resolution, and 404 handling.
 * `state_bucket.tf`: Versioned GCS bucket for remote Terraform state.
 
-To plan infrastructure changes locally:
+To plan infrastructure changes locally (`cloudflare_account_id` is stored encrypted in `terraform/secrets.yaml`):
 
 ```bash
+export TF_VAR_cloudflare_account_id="$(sops --extract '["cloudflare_account_id"]' -d terraform/secrets.yaml)"
+export TF_VAR_cloudflare_api_token="<YOUR_CLOUDFLARE_TOKEN>"
 cd terraform
 terraform init
-terraform plan -var="cloudflare_api_token=<YOUR_CLOUDFLARE_TOKEN>"
+terraform plan
 ```
