@@ -424,3 +424,39 @@
   border: 0 !important;
   white-space: nowrap !important;
 }
+
+/* Theme-aware Faceted Horizon SVG gradient stops */
+.brand-crown-start {
+  stop-color: light-dark(#10b981, #6ee7b7);
+}
+.brand-crown-end {
+  stop-color: light-dark(#0d9488, #2dd4bf);
+}
+.brand-facet-start {
+  stop-color: light-dark(#059669, #34d399);
+}
+.brand-facet-end {
+  stop-color: light-dark(#0d9488, #14b8a6);
+}
+
+/* Accessible FAQ disclosure accordion */
+.faq-item {
+  overflow: hidden;
+}
+
+.faq-summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-item[open] {
+  border-color: var(--border-accent);
+}

@@ -1,8 +1,10 @@
 import { For, type Component } from "solid-js";
 import { AGORA } from "../data/agora";
+import { HOME_FAQS } from "../data/faqs";
 import { ENGAGEMENT_MODELS, SERVICE_PILLARS } from "../data/services";
-import { AVAILABILITY, buildOrganizationSchema, CLIENT_ORGS, SITE } from "../data/site";
+import { AVAILABILITY, buildHomeGraph, CLIENT_ORGS, SITE } from "../data/site";
 import { CASE_STUDIES, CERTIFICATIONS } from "../data/work";
+import { FaqSection } from "../components/FaqSection";
 import { ArrowRightIcon, AwardIcon, CheckIcon, ExternalLinkIcon } from "../components/Icons";
 import { SeoHead } from "../components/SeoHead";
 import { ThemePicture } from "../components/ThemePicture";
@@ -19,7 +21,7 @@ export const HomePage: Component = () => {
         title={`${SITE.name} | ${SITE.tagline}`}
         description={SITE.description}
         path="/"
-        jsonLd={buildOrganizationSchema()}
+        jsonLd={buildHomeGraph(HOME_FAQS)}
       />
 
       {/* Hero Section */}
@@ -198,6 +200,7 @@ export const HomePage: Component = () => {
                     alt="Agora platform icon"
                     width="44"
                     height="44"
+                    decoding="async"
                     class="w-11 h-11 rounded-xl object-cover border border-[var(--border-accent)] shrink-0"
                   />
                   <div>
@@ -337,15 +340,25 @@ export const HomePage: Component = () => {
         </div>
       </section>
 
+      {/* Consultancy & Engagement FAQs */}
+      <FaqSection
+        eyebrow="Frequently Asked Questions"
+        heading="Common questions about working together"
+        items={HOME_FAQS}
+        containerClass="max-w-6xl"
+      />
+
       {/* Principal & Credentials Confidence Band */}
       <section class="py-10 px-5 pb-16">
         <div class="max-w-6xl mx-auto studio-card rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div class="flex items-start sm:items-center gap-4">
             <img
-              src="/profile.jpeg"
+              src="/profile.webp"
               alt="Jack Jefferies, Founder of Ethereal Technologies"
               width="64"
               height="64"
+              loading="lazy"
+              decoding="async"
               class="w-16 h-16 rounded-2xl object-cover border border-[var(--border-accent)] shrink-0"
             />
             <div>

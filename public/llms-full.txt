@@ -1,0 +1,117 @@
+# Ethereal Technologies — Complete Studio & Engineering Reference
+
+Canonical URL: https://www.etherealtechnologies.co.uk/
+Legal Entity: Ethereal Technologies Ltd (Registered in England & Wales · UK Company No. 11274880 · VAT Reg No. GB291330321 · https://find-and-update.company-information.service.gov.uk/company/11274880)
+Base & Coverage: Bristol, United Kingdom — Remote UK & International B2B Software Consultancy
+Founder & Principal Consultant: Jack Jefferies (https://www.etherealtechnologies.co.uk/about)
+Contact: jack@etherealtechnologies.co.uk · +44 7506 479 737 · https://github.com/DaJaffaMan · https://www.linkedin.com/in/jack-jefferies
+Languages: English (Native Proficiency), Japanese (Intermediate · JLPT N3/N4 Level)
+
+---
+
+## 1. Positioning & Operating Philosophy
+
+Ethereal Technologies is a principal-led software consultancy and product studio. Clients work directly with the principal engineer designing cloud topologies, auditing legacy protocols, mentoring engineers, and shipping production releases — without account management intermediaries. Alongside B2B client engagements, Ethereal Technologies designs, engineers, and operates Agora (https://agora.cleaning), a live two-sided UK cleaning marketplace platform.
+
+- **Current Availability**: Available for select Q1/Q2 engagements (architecture audits, embedded principal delivery & zero-to-one platform builds).
+- **Commercial Approach**: Scoped directly per engagement (fixed-scope audits, sprint/quarterly embedded leadership, or milestone product builds); hourly/day rates are discussed privately on inquiry.
+
+---
+
+## 2. Consultancy Service Pillars & Engagement Models
+
+### Service Pillars
+1. **01 / CLOUD & PLATFORM — Cloud & IaC Architecture**
+   - Production AWS & GCP infrastructure codified with Terraform and Pulumi.
+   - Repeatable multi-environment Terraform & Pulumi estates; event-driven queues, serverless pipelines & edge caching; federated GraphQL supergraphs & API gateway consolidation.
+   - Core technologies: AWS, GCP, Terraform, Pulumi, GraphQL, Docker.
+2. **02 / PRODUCT DELIVERY — Full-Stack & Mobile Apps**
+   - Zero-to-one web and cross-platform mobile applications engineered in TypeScript, SolidJS/React, Flutter, and NestJS with strict end-to-end typing.
+   - Cross-platform Flutter mobile releases & responsive SSR/SSG web apps; typed backend APIs (NestJS, Fastify, Spring Boot) & multi-party Stripe flows; unified Tailwind design systems built for multi-brand theming.
+   - Core technologies: TypeScript, SolidJS, React, Flutter, NestJS, Stripe.
+3. **03 / MODERNISATION — Legacy & Data Systems**
+   - De-risking undocumented monoliths and roadside/embedded hardware protocols alongside OLTP-to-OLAP analytics and Neo4j graph modelling.
+   - Incremental monolith dismantling (PHP, Java 6 WAR -> Java 21 Spring Boot); OLTP query isolation & star-schema OLAP analytics migrations; Neo4j, PostgreSQL, and isolated test harnesses.
+   - Core technologies: Java 21, PostgreSQL, Neo4j, OLAP, Spring Boot, Angular.
+4. **04 / LEADERSHIP — Technical Leadership**
+   - Interim tech leadership to bridge external consultancy handovers in-house, raise engineering standards, and accelerate developer onboarding.
+   - Interim Tech Lead & mentoring; consultancy-to-in-house transition & handover governance; reproducible local environments cutting onboarding from days to hours.
+   - Core technologies: Architecture Review, CI/CD, Mentoring, GDS Compliance, Product Delivery.
+
+### Engagement Models
+- **01 · Architecture & Modernisation Audit** (`1–2 Weeks · Fixed Scope`): Rapid technical due diligence, legacy monolith de-risking, or cloud/database bottleneck diagnosis with an actionable execution roadmap.
+- **02 · Embedded Principal Delivery** (`Sprint / Quarterly`): Senior hands-on engineering and interim technical leadership embedded directly alongside your team to ship critical milestones or transition agency builds in-house.
+- **03 · Zero-to-One Product & Platform Build** (`Milestone / Retainer`): End-to-end engineering of greenfield web, mobile, and marketplace platforms — from schema and cloud IaC to production app store release.
+
+---
+
+## 3. Flagship Product: Agora (https://agora.cleaning)
+
+- **Distribution**: Live in production across web (https://agora.cleaning) and Google Play (https://play.google.com/store/apps/details?id=cleaning.agora&hl=en).
+- **Machine-Readable Endpoints**: https://agora.cleaning/llms.txt · https://agora.cleaning/llms-full.txt · https://api.agora.cleaning/.well-known/mcp.json
+- **Supply Network**: Independent local UK cleaners with verified profiles, schedules, and £0 per-lead fees.
+- **Commercial Trust Mechanics**:
+  - **Stripe Escrow Protection (Charged After Clean)**: Pre-authorised at booking and held safely in Stripe Connect escrow until verified completion.
+  - **48h Spotless Guarantee & Photo Proof (Room-by-Room Proof)**: Interactive room checklists with timestamped before/after photos backed by a 48h domestic / 72h end-of-tenancy guarantee.
+  - **£0 Per-Lead Fees · Flat 10% Commission (~88% Net Take-Home)**: Cleaners keep 100% of tips and pay no pay-to-bid lead charges (`0%` Agora commission during launch promos; `1.5% + 20p` Stripe card processing applies), compared against typical `30%–45%` traditional agency margins.
+  - **Encrypted Time-Windowed Lockbox Access (E2E Encrypted PINs)**: Key safe codes encrypted end-to-end, revealed strictly during the active booking window, and guarded with screenshot protection.
+- **End-to-End 6-Node Architecture**:
+  1. `01 · Flutter Client` (Flutter, Dart, Responsive Web, Google Play): Booking wizard, property blueprint estimator, checklist proof uploads, lockbox shield.
+  2. `02 · Firebase Auth` (Firebase Auth, JWT Guards, RBAC Claims): Stateless JWT verification isolating homeowner, cleaner, and admin roles.
+  3. `03 · NestJS GraphQL` (NestJS, Fastify, Apollo GraphQL, TypeScript): Deterministic booking state machine (`Confirmed -> In Progress -> Verified`) and idempotent Stripe webhook handlers.
+  4. `04 · Neo4j Graph` (Neo4j, Cypher, Graph Modelling, Google Maps Matrix): Postcode radius matching, recurring availability, preferred-cleaner graphs.
+  5. `05 · Stripe Connect` (Stripe Connect, Escrow Flows, Connect KYC, Webhooks): Multi-party pre-auth escrow holds, automated splits, and UK bank payouts.
+  6. `06 · GCP + Terraform` (Terraform, Google Cloud, Cloud Run, GCS): Environment parity between `dev.agora` and production with least-privilege IAM.
+
+---
+
+## 4. Client Case Studies & Full Track Record
+
+### Curated Case Studies (https://www.etherealtechnologies.co.uk/work)
+- **Costain Group PLC (National Infrastructure · Apr 2024 – Sep 2024)**: Full Stack Engineer. Reverse-engineered undocumented roadside C/Java 6 motorway Variable Message Sign (VMS) bitwise byte protocols into a Java 21 Spring Boot API & greenfield Angular operator platform in 5 months (`5 Months` delivery | `Java 6 -> 21` | `Roadside C`).
+- **Octopus Energy Hydrogen (Clean Energy · Dec 2023 – Jun 2024)**: Fullstack Cloud & DevOps Engineer. Sole engineer delivering an SSR Next.js telemetry dashboard ingesting half-hourly UK National Grid demand through message queues backed by AWS Terraform and Vercel (`2-Week` milestones | `30-Min Feed` National Grid API | `Sole Engineer`).
+- **Homelink (IoT & Connected Homes · Jan 2024 – Apr 2024)**: Fullstack Cloud Engineer (Senior Lead). Eliminated OLTP locking by architecting a decoupled de-normalised star-schema OLAP analytics layer, shipped European i18n, and cut engineer onboarding from days to hours (`Days -> Hours` onboarding | `OLTP -> OLAP` | `EU Launch`).
+- **Sero (Net-Zero PropTech · Feb 2021 – Apr 2023)**: Lead Engineer & Interim Team Manager. Led an 18-month transition from external consultancy MVP to an in-house platform with a federated GCP GraphQL supergraph, mentoring, and Tailwind component library (`18 Months` | `Supergraph` | `MVP -> In-House`).
+- **Superdry (Global E-Commerce · May 2020 – Jan 2021)**: Fullstack Engineer. Co-led dismantling of a PHP storefront monolith into TypeScript AWS Lambda microservices, DynamoDB & ElastiCache catalogues, and S3/CDN edge caching (`PHP -> Lambda` | `Edge + CDN` | `Automated` cloud warehousing).
+
+### Earlier Engineering Track Record (2013–2023)
+- **Pynea (Jul 2023 – Oct 2023)**: Cloud Platform Consultant — Dockerised GraphQL architecture, Pulumi + GitLab CI/CD, event-driven AWS FIFO media pipelines.
+- **BJSS — Public Sector Consolidation (Nov 2019 – Apr 2020)**: Fullstack Engineer — GDS-compliant platform consolidating UK local council funding systems (TypeScript, React, GraphQL).
+- **BJSS — Child & Adult Protection (Aug 2018 – Oct 2019)**: Fullstack Engineer — High-security safeguarding microservice migration with BDD, TypeScript, React, Java, and AWS.
+- **Citadel Computing Services (Apr 2018 – Jul 2018)**: Fullstack Engineer — Streamlined Java/Spring & MySQL health insurance quote workflows.
+- **GameBench (Apr 2017 – Mar 2018)**: Fullstack Engineer — MySQL-to-Elasticsearch analytics migration & high-throughput telemetry microservices with JWT RBAC.
+- **Northrop Grumman (Apr 2016 – Apr 2017)**: Software Engineer — Defence R&D microservices evaluating Kafka, RabbitMQ, SQS, Redis, Kubernetes & Neo4j clusters.
+- **Nominet (Aug 2013 – Apr 2016)**: Apprentice Software Engineer — Java & BI DNS utilisation dashboards and SQL warehousing supporting ISO27001 accreditation.
+
+### Certifications
+- AWS Solutions Architect Associate (Amazon Web Services, July 2020)
+- Google Cloud Certified Developer (Google Cloud, 2023)
+- Graph Data Modelling Fundamentals (Neo4j, September 2023)
+
+---
+
+## 5. Frequently Asked Questions
+
+### Consultancy & Studio FAQs
+- **How do Ethereal Technologies' consultancy engagement models work?**
+  Engagements are structured around three clear formats depending on your stage: a 1–2 week fixed-scope Architecture & Modernisation Audit, sprint or quarterly Embedded Principal Delivery alongside your team, or milestone-based Zero-to-One Product & Platform Builds. Commercial terms are scoped directly on inquiry rather than behind agency account tiers.
+- **Where is Ethereal Technologies registered and who do you work with?**
+  Ethereal Technologies Ltd is a UK-registered B2B software consultancy (UK Company No. 11274880, VAT Reg No. GB291330321) based in Bristol, UK. Founder Jack Jefferies works remotely with engineering teams across the UK and internationally, and communicates in English and Japanese (JLPT N3/N4).
+- **What core technologies and cloud stacks do you specialise in?**
+  Core production expertise spans TypeScript, SolidJS, React/Next.js, Flutter, NestJS/Fastify, Java 21 Spring Boot, GraphQL federated supergraphs, PostgreSQL (OLTP & OLAP star schemas), Neo4j graph modelling, Stripe Connect, and codified AWS and Google Cloud estates using Terraform and Pulumi.
+- **What is the relationship between Ethereal Technologies and Agora?**
+  Agora (agora.cleaning) is Ethereal Technologies' flagship production product — a two-sided UK cleaning services marketplace live on web and Google Play. Designing, shipping, and operating Agora in-house proves our full-stack, fintech, and GCP Terraform engineering in a live commercial environment.
+- **Can you rescue an external agency MVP or bridge technical leadership in-house?**
+  Yes. At Sero, Jack Jefferies served as Lead Engineer and Interim Team Manager for 18 months to transition an external agency MVP onto an autonomous in-house federated GCP supergraph. Similar audits and handovers have cut developer onboarding from days to hours at Homelink and de-risked undocumented monoliths at Costain and Superdry.
+
+### Agora Product & Architecture FAQs
+- **What is Agora and who built it?**
+  Agora is a two-sided UK cleaning services marketplace platform connecting homeowners, tenants, and hosts with independent local cleaning professionals via web (agora.cleaning) and Google Play. It is designed, built, and operated in-house by Ethereal Technologies Ltd (Company No. 11274880).
+- **How do Stripe Escrow Protection and the 48h Spotless Guarantee work?**
+  Customer payments are pre-authorised via Stripe Connect and held safely in escrow until after the clean is completed with timestamped before/after photo checklists. Domestic cleans carry a 48-hour Spotless Guarantee (72 hours for end-of-tenancy bookings).
+- **How do Agora's cleaner fees compare with traditional UK agencies or lead directories?**
+  Cleaners pay £0 per-lead bidding fees and £0 directory subscriptions. Standard bookings carry a transparent flat 10% Agora commission (plus 1.5% + 20p Stripe card processing, with 0% Agora commission promo periods), letting pros keep ~88% net take-home and 100% of tips versus typical 30–45% traditional agency margins.
+- **How does Agora protect homeowner property access and lockbox codes?**
+  Property key-safe and lockbox PINs are end-to-end encrypted, revealed strictly within the active booking window, and protected with client screenshot shielding and GPS check-in workflows.
+- **What technology architecture powers Agora in production?**
+  Agora runs on a cross-platform Flutter client (Android & web), Firebase Authentication with role-isolated JWT claims, a Fastify-backed NestJS Apollo GraphQL API, a Neo4j graph matching database, Stripe Connect multi-party escrow and UK bank payouts, and repeatable Google Cloud infrastructure managed with Terraform.

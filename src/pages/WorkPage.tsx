@@ -1,6 +1,6 @@
 import { createMemo, createSignal, For, type Component } from "solid-js";
 import type { ServiceDomainId } from "../data/services";
-import { SITE } from "../data/site";
+import { buildWorkGraph, SITE } from "../data/site";
 import { CASE_STUDIES, TRACK_RECORD } from "../data/work";
 import { ArrowRightIcon, ChevronDownIcon } from "../components/Icons";
 import { SeoHead } from "../components/SeoHead";
@@ -36,6 +36,7 @@ export const WorkPage: Component = () => {
         title={`Selected Work & Case Studies | ${SITE.name}`}
         description="Over a decade delivering high-stakes engineering projects across energy, national infrastructure, IoT analytics, retail, and UK public sector."
         path="/work"
+        jsonLd={buildWorkGraph()}
       />
 
       <section class="pt-14 pb-16 px-5">

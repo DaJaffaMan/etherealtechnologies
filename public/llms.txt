@@ -1,0 +1,50 @@
+# Ethereal Technologies
+
+> Principal-led UK B2B software consultancy and product studio founded by Jack Jefferies in Bristol, UK — specialising in cloud architecture, legacy system modernisation, and full-stack delivery, and the creators of Agora (https://agora.cleaning).
+
+- **Legal Entity**: Ethereal Technologies Ltd (Registered in England & Wales, Company No. 11274880, VAT Reg No. GB291330321)
+- **Location & Coverage**: Bristol, UK — serving B2B clients remotely across the UK & internationally (English, Japanese JLPT N3/N4)
+- **Principal**: Jack Jefferies (Founder & Principal Software Consultant; AWS Solutions Architect Associate, Google Cloud Certified Developer, Neo4j Graph Data Modelling)
+- **Commercial Terms**: Fixed-scope, sprint/quarterly, and milestone B2B engagements; custom rates scoped directly on inquiry
+
+## Primary Pages
+
+- [Home](https://www.etherealtechnologies.co.uk/): Overview of principal-led consultancy capabilities, engagement models, Agora spotlight, client trust strip, and studio FAQs.
+- [Agora Flagship Product](https://www.etherealtechnologies.co.uk/agora): Architecture breakdown, trust mechanics, and live Flutter mobile screens for Agora.
+- [Selected Work & Case Studies](https://www.etherealtechnologies.co.uk/work): Detailed case studies for Costain Group PLC, Octopus Energy Hydrogen, Homelink, Sero, Superdry, and 13 engagements (2013–Present).
+- [About & Principal Profile](https://www.etherealtechnologies.co.uk/about): Background on Jack Jefferies, certifications, operating principles, and company credentials.
+- [Contact](https://www.etherealtechnologies.co.uk/contact): Direct consultancy inquiry form, email, and availability status.
+- [Full Machine-Readable Knowledge Base](https://www.etherealtechnologies.co.uk/llms-full.txt): Complete services, Agora technical stack, case study metrics, full timeline, and verbatim FAQs.
+
+## Consultancy Services & Engagement Models
+
+- **01 · Cloud & IaC Architecture**: Multi-environment Terraform & Pulumi estates (AWS & GCP), event-driven queues, and federated GraphQL supergraphs.
+- **02 · Full-Stack & Mobile Apps**: Cross-platform Flutter, TypeScript, SolidJS, React/Next.js, NestJS/Fastify, Spring Boot, and Stripe Connect multi-party payment systems.
+- **03 · Legacy & Data Systems**: Monolith dismantling (PHP monoliths, Java 6 WAR → Java 21 Spring Boot), roadside bitwise protocols, OLTP-to-OLAP star-schema migrations, and Neo4j graph databases.
+- **04 · Technical Leadership**: Interim Tech Lead, agency-to-in-house platform handover governance, mentoring, and developer onboarding acceleration.
+- **Engagement Formats**: Architecture & Modernisation Audit (1–2 weeks · fixed scope), Embedded Principal Delivery (sprint/quarterly), Zero-to-One Product & Platform Build (milestone/retainer).
+
+## Flagship Product: Agora
+
+- **Website**: https://agora.cleaning (Live on Web & Google Play: `cleaning.agora`)
+- **What it is**: Two-sided UK cleaning services marketplace built and operated end-to-end by Ethereal Technologies Ltd.
+- **Key Mechanics**: Stripe Connect T-72h pre-auth escrow protection, 48h Spotless Guarantee with timestamped room-by-room photo proof, £0 per-lead fees & flat 10% Agora commission (~88% net cleaner take-home + 100% tips), and end-to-end encrypted time-windowed lockbox PINs.
+- **Stack**: Flutter client, Firebase Auth (RBAC JWT claims), Fastify-backed NestJS Apollo GraphQL API, Neo4j graph matching database, Stripe Connect, and Google Cloud (Cloud Run, GCS) via Terraform.
+- **Agora Machine-Readable Specs**: [Agora LLMs Overview](https://agora.cleaning/llms.txt) · [Agora Full Knowledge Base](https://agora.cleaning/llms-full.txt) · [Agora MCP Server Metadata](https://api.agora.cleaning/.well-known/mcp.json)
+
+## Selected Client Highlights
+
+- **Costain Group PLC**: Reverse-engineered undocumented roadside C/Java 6 VMS bytecode protocols to Java 21 Spring Boot + Angular in 5 months.
+- **Octopus Energy Hydrogen**: Sole engineer shipping an SSR Next.js national grid telemetry dashboard ingesting 30-minute National Grid feeds via AWS & Terraform.
+- **Homelink**: Decoupled OLTP bottlenecks into a star-schema OLAP analytics layer, shipped European i18n, and cut engineer onboarding from days to hours.
+- **Sero**: 18-month Interim Tech Lead transitioning an agency MVP into an in-house federated GCP GraphQL supergraph platform.
+- **Superdry**: Dismantled customer-facing PHP monolith into modular AWS Lambda microservices, DynamoDB, ElastiCache, and CDN edge caching.
+
+## Contact & Official Profiles
+
+- **Email**: jack@etherealtechnologies.co.uk
+- **Telephone**: +44 7506 479 737
+- **GitHub**: https://github.com/DaJaffaMan
+- **LinkedIn**: https://www.linkedin.com/in/jack-jefferies
+- **Product**: https://agora.cleaning
+- **Companies House**: https://find-and-update.company-information.service.gov.uk/company/11274880

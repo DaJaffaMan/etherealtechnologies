@@ -1,7 +1,9 @@
 import { For, type Component } from "solid-js";
 import { AGORA } from "../data/agora";
-import { buildAgoraSoftwareSchema, SITE } from "../data/site";
+import { AGORA_FAQS } from "../data/faqs";
+import { buildAgoraGraph, SITE } from "../data/site";
 import { AgoraArchitectureBlueprint } from "../components/AgoraArchitectureBlueprint";
+import { FaqSection } from "../components/FaqSection";
 import { ArrowRightIcon, CheckIcon, ExternalLinkIcon } from "../components/Icons";
 import { SeoHead } from "../components/SeoHead";
 import { ThemePicture } from "../components/ThemePicture";
@@ -13,7 +15,7 @@ export const AgoraPage: Component = () => {
         title={`Agora Platform — Flagship Product | ${SITE.name}`}
         description="Explore Agora, a two-sided professional cleaning services marketplace built and operated in-house by Ethereal Technologies using Flutter, NestJS, GraphQL, Neo4j, and Stripe Connect."
         path="/agora"
-        jsonLd={buildAgoraSoftwareSchema()}
+        jsonLd={buildAgoraGraph(AGORA_FAQS)}
       />
 
       {/* Hero */}
@@ -25,6 +27,7 @@ export const AgoraPage: Component = () => {
               alt="Agora logo"
               width="48"
               height="48"
+              decoding="async"
               class="w-12 h-12 rounded-2xl object-cover border border-[var(--border-accent)]"
             />
             <div>
@@ -211,6 +214,14 @@ export const AgoraPage: Component = () => {
           </div>
         </div>
       </section>
+
+      {/* Agora Product & Architecture FAQs */}
+      <FaqSection
+        eyebrow="Agora FAQ"
+        heading="Questions about Agora & its architecture"
+        items={AGORA_FAQS}
+        containerClass="max-w-5xl"
+      />
 
       {/* Why it matters for consultancy clients */}
       <section class="py-8 px-5 pb-16">

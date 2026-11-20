@@ -32,6 +32,23 @@ function assertHtmlContract(routePath, html) {
   if (!/<meta[^>]+name=["']description["'][^>]*>/i.test(html)) {
     throw new Error(`Route ${routePath}: missing <meta name="description">`);
   }
+  if (!/<meta[^>]+property=["']og:image:alt["'][^>]*>/i.test(html)) {
+    throw new Error(`Route ${routePath}: missing <meta property="og:image:alt">`);
+  }
+
+  if (routePath !== "/404") {
+    const ldMatches = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+    if (ldMatches.length === 0) {
+      throw new Error(`Route ${routePath}: missing <script type="application/ld+json">`);
+    }
+    for (const match of ldMatches) {
+      try {
+        JSON.parse(match[1]);
+      } catch (err) {
+        throw new Error(`Route ${routePath}: invalid JSON-LD payload (${err.message})`);
+      }
+    }
+  }
 }
 
 async function main() {
